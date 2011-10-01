@@ -1,0 +1,14 @@
+[
+  {
+     "model": "personal.Person",
+     "pk": 1,
+     "fields": {
+        "name": "Станислав",
+        "surname": "Егармин",
+        "birthday": "1973-08-01",
+        "bio": "Краткая биография",
+        "email": "ustas078@gmail.com",
+        "phone": "+380632539579"
+    }
+  }
+]
