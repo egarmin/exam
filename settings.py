@@ -1,3 +1,4 @@
+# Django settings for exam project.
 import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
@@ -12,9 +13,9 @@ MANAGERS = ADMINS
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DATABASES = {
-    'default':{
+    'default': {
         'ENGINE': 'sqlite3',
-        'NAME': os.path.join(PROJECT_ROOT, 'pers.db'), # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_ROOT, 'pers.db'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -60,7 +61,7 @@ MEDIA_URL = '/media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '/media_admin/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'inw2wpu8-+j+!135dcssd-fi8oq#aim+38c59223q37pmxv#fu'
@@ -82,13 +83,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'exam.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(PROJECT_ROOT, 'personal/templates'),
+     os.path.join(PROJECT_ROOT, 'personal/templates'),
 )
 
 INSTALLED_APPS = (
