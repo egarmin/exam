@@ -1,22 +1,9 @@
 *.pyc
-log*
-.project*
-.pydevproject
-.settings*
-media/pictures*
-cms*
+*.py~
+*.html~
+*.mo~
+*.po~
 *.db
-.tmp*
-pkg*
-tests*
-tmp*
-.ropeproject*
-nbproject*
-msgcount
-#*#
-*~
 .idea*
-media/files*
-.env
 
 

@@ -6,4 +6,8 @@ from django.http import HttpResponse
 
 @render_to('display_pers.html')
 def display_person(request):
-    return HttpResponse('test')
+    try:
+        pers = Person.objects.get(pk=1)
+    except:
+        pers = None
+    return {'pers':pers}
