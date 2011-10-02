@@ -1,23 +1,22 @@
-"""
-This file demonstrates two different styles of tests (one doctest and one
-unittest). These will both pass when you run "manage.py test".
+# -*- coding: utf-8 -*-
+from tddspry.django import HttpTestCase
+from loginfo.models import LogRequest
 
-Replace these with more appropriate tests for your application.
-"""
 
-from django.test import TestCase
+class MiddlewarePerson(HttpTestCase):
+    '''  middleware ReqLog test '''
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+    def request_log_test(self):
+        """ request record test   """
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
-
->>> 1 + 1 == 2
-True
-"""}
-
+        self.client.get('/someurl1/')
+        self.client.get('/someurl2/?somevariable1=somevalue1&somevariable2=somevalue2')
+        try:
+            log = LogRequest.objects.order_by('-added')[0]
+        except:
+            self.assert_true(False)
+        else:
+            content = log.content
+            self.assert_true('somevariable1 = somevalue1' in content)
+            self.assert_true('somevariable2 = somevalue2' in content)
+            self.assert_equal(log.path, '/someurl2/')
