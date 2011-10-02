@@ -17,6 +17,6 @@ class MiddlewarePerson(HttpTestCase):
             self.assert_true(False)
         else:
             content = log.content
-            self.assert_true('somevariable1 = somevalue1' in content)
-            self.assert_true('somevariable2 = somevalue2' in content)
+            self.assert_true('somevariable1=somevalue1' in content)
+            self.assert_true('somevariable2=somevalue2' in content)
             self.assert_equal(log.path, '/someurl2/')
