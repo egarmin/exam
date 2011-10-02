@@ -2,6 +2,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+
 def render_to(template=None, mimetype="text/html"):
     """
     Decorator for Django views that sends returned dict to render_to_response
@@ -14,7 +15,7 @@ def render_to(template=None, mimetype="text/html"):
                 return output
             tmpl = output.pop('TEMPLATE', template)
             return render_to_response(tmpl, output, \
-                        context_instance=RequestContext(request), mimetype=mimetype)
+                        context_instance=RequestContext(request),
+                        mimetype=mimetype)
         return wrapper
     return renderer
-

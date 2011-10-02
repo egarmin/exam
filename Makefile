@@ -10,17 +10,4 @@ install:
 test:
 
 	@echo Test in progress...
-	django-nosetests.py -v -exe.
-
-
-
-
-
-
-
-
-
-
-
-
- django-nosetests.py -v -exe
+	@django-nosetests.py -v -exe.

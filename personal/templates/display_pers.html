@@ -3,13 +3,14 @@
 {% load i18n %}
 
 <div class="contact">
-<h1>{% trans "Contact" %}</h1>
+<h1>{% trans "Personal information" %}</h1>
      <table id="contact" cellspacing="10">
          <tr><td>{% trans "Name" %}</td><td>{{ pers.name }}</td></tr>
          <tr><td>{% trans "Surname" %}</td><td>{{ pers.surname }}</td></tr>
-         <tr><td>{% trans "Biography" %}</td><td>
-             <textarea>{{ pers.bio }}</textarea></td></tr>
-         <tr><td>{% trans "Birthday" %}</td><td>{{ pers.birthday|date:"d.m.Y" }}</td></tr>
+         <tr><td>{% trans "Biography" %}</td>
+             <td><textarea>{{ pers.bio }}</textarea></td></tr>
+         <tr><td>{% trans "Birthday" %}</td>
+             <td>{{ pers.birthday|date:"d.m.Y" }}</td></tr>
          <tr><td>{% trans "Phone" %}</td><td>{{ pers.phone }}</td></tr>
          <tr><td>{% trans "E-mail" %}</td><td>{{ pers.email }}</td></tr>
 

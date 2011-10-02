@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-01 14:12+0300\n"
+"POT-Creation-Date: 2011-10-02 15:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: personal/models.py:8
 msgid "name"
@@ -34,25 +35,25 @@ msgstr "Биография"
 msgid "birthday"
 msgstr "День рождения"
 
-#: personal/models.py:12
+#: personal/models.py:13
 msgid "phone"
 msgstr "телефон"
 
-#: personal/models.py:13
+#: personal/models.py:16
 msgid "e-mail"
 msgstr "эл. почта"
 
-#: personal/models.py:16
+#: personal/models.py:19
 msgid "person"
 msgstr "личность"
 
-#: personal/models.py:17
-msgid "persons"
+#: personal/models.py:20
+msgid "people"
 msgstr "персонал"
 
 #: personal/templates/display_pers.html:6
-msgid "Contact"
-msgstr "Персональные данные"
+msgid "Personal information"
+msgstr "Персональная информация"
 
 #: personal/templates/display_pers.html:8
 msgid "Name"
@@ -66,14 +67,14 @@ msgstr "Фамилия"
 msgid "Biography"
 msgstr "Биография"
 
-#: personal/templates/display_pers.html:11
+#: personal/templates/display_pers.html:12
 msgid "Birthday"
 msgstr "День рождения"
 
-#: personal/templates/display_pers.html:12
+#: personal/templates/display_pers.html:14
 msgid "Phone"
 msgstr "Телефон"
 
-#: personal/templates/display_pers.html:13
+#: personal/templates/display_pers.html:15
 msgid "E-mail"
 msgstr "Эл. почта"
