@@ -1,4 +1,4 @@
-# Django settings for exam project.
+# -*- coding: utf-8 -*-
 import os
 
 PROJECT_ROOT = os.path.dirname(__file__)
@@ -81,6 +81,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'loginfo.middleware.MyMiddle',
 )
 
 ROOT_URLCONF = 'urls'
