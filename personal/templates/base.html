@@ -8,8 +8,11 @@
     <link href="/media/css/base.css" rel="stylesheet" type="text/css" />
   </head>
 <body>
-{% block content %}content{% endblock %}
+    {% block content %}content{% endblock %}
 
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
 
 </body>
 </html>

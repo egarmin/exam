@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-03 15:36+0300\n"
+"POT-Creation-Date: 2011-10-03 17:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,13 +59,17 @@ msgstr "Общая информация"
 msgid "Information about user"
 msgstr "Информация о пользователе"
 
-#: loginfo/templates/display_req.html:24
+#: loginfo/templates/display_req.html:23
 msgid "No data to display"
 msgstr "Данные для отображения отсутствуют"
 
-#: loginfo/templates/display_req.html:27
+#: loginfo/templates/display_req.html:34
 msgid "Main page"
 msgstr "Главная страница"
+
+#: loginfo/templates/footer.html:5
+msgid "10 requests"
+msgstr "10 запросов"
 
 #: personal/models.py:7
 msgid "name"

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block content %}
 {% load i18n %}
+{% block content %}
 
 <div class="middleware">
 <h1 align="center">{% trans "The first 10 HTTP requests that are stored by middlware" %}</h1>
@@ -23,8 +23,15 @@
                 <h3>{% trans "No data to display" %}</h3>
             {% endfor %}
     </table>
-    <a href="/">{% trans "Main page" %}</a>
 
 </div>
 
+
 {% endblock %}
+
+{% block footer %}
+    <div class="middleware">
+        <a href="/">{% trans "Main page" %}</a>
+    </div>
+{% endblock %}
+
