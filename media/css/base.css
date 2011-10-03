@@ -46,3 +46,24 @@ h1 {
     font-size: 16px;
     }
 
+.middleware textarea{
+    height: 10pc;
+    width: 400px;
+    vertical-align: top;
+}
+
+
+.middleware table, tr {
+    vertical-align: top;
+    width: 100%;
+}
+
+.middleware{
+    margin-bottom: 10px;
+    margin-left:5px;
+}
+
+.middleware th{
+    font-weight: bolder;
+    background-color: yellow;
+}
