@@ -1,5 +1,5 @@
 from django.conf import settings
 
 
-def addsettings (request):
+def addsettings(request):
     return {'settings': settings}
