@@ -36,3 +36,11 @@ class TestDisplayPerson(HttpTestCase):
         self.find('Biography')
         self.find('Phone')
         self.find('E-mail')
+
+class TestContextProcessor(HttpTestCase):
+    ''' Test adding SETTINGS to context '''
+
+    def context_test(self):
+        response = self.client.get('/')
+        self.assert_true('settings' in response.context[0],
+                         'no settings in context.')
