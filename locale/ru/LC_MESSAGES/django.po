@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-02 15:11+0300\n"
+"POT-Creation-Date: 2011-10-03 15:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,35 +19,83 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: personal/models.py:8
+#: loginfo/models.py:8
+msgid "was added"
+msgstr "добавлен"
+
+#: loginfo/models.py:9
+msgid "path"
+msgstr "путь"
+
+#: loginfo/models.py:10
+msgid "parameters"
+msgstr "параметры"
+
+#: loginfo/models.py:11
+msgid "user info"
+msgstr "информация о пользователе"
+
+#: loginfo/templates/display_req.html:6
+msgid "The first 10 HTTP requests that are stored by middlware"
+msgstr "10 первых HTTP-запросов, сохраненных посредством middleware"
+
+#: loginfo/templates/display_req.html:9
+msgid "Filing"
+msgstr "Номер по"
+
+#: loginfo/templates/display_req.html:9
+msgid "number"
+msgstr "порядку"
+
+#: loginfo/templates/display_req.html:10
+msgid "Time of adding"
+msgstr "Время записи"
+
+#: loginfo/templates/display_req.html:11
+msgid "Common information"
+msgstr "Общая информация"
+
+#: loginfo/templates/display_req.html:12
+msgid "Information about user"
+msgstr "Информация о пользователе"
+
+#: loginfo/templates/display_req.html:24
+msgid "No data to display"
+msgstr "Данные для отображения отсутствуют"
+
+#: loginfo/templates/display_req.html:27
+msgid "Main page"
+msgstr "Главная страница"
+
+#: personal/models.py:7
 msgid "name"
 msgstr "Имя"
 
-#: personal/models.py:9
+#: personal/models.py:8
 msgid "surname"
 msgstr "Фамилия"
 
-#: personal/models.py:10
+#: personal/models.py:9
 msgid "biography"
 msgstr "Биография"
 
-#: personal/models.py:11
+#: personal/models.py:10
 msgid "birthday"
 msgstr "День рождения"
 
-#: personal/models.py:13
+#: personal/models.py:12
 msgid "phone"
 msgstr "телефон"
 
-#: personal/models.py:16
+#: personal/models.py:15
 msgid "e-mail"
 msgstr "эл. почта"
 
-#: personal/models.py:19
+#: personal/models.py:18
 msgid "person"
 msgstr "личность"
 
-#: personal/models.py:20
+#: personal/models.py:19
 msgid "people"
 msgstr "персонал"
 
@@ -78,3 +126,9 @@ msgstr "Телефон"
 #: personal/templates/display_pers.html:15
 msgid "E-mail"
 msgstr "Эл. почта"
+
+#~ msgid "secured"
+#~ msgstr "защищенный"
+
+#~ msgid "via ajax"
+#~ msgstr "через ajax"
