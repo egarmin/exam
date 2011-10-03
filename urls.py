@@ -11,6 +11,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('personal.urls')),
+    url(r'^', include('loginfo.urls')),
     url(r'^media/(.*)$', 'django.views.static.serve',
         kwargs={'document_root': settings.MEDIA_ROOT}),
 
