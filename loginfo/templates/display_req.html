@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+
+<div class="middleware">
+<h1 align="center">{% trans "The first 10 HTTP requests that are stored by middlware" %}</h1>
+
+    <table>
+        <tr><th>Номер по<br>порядку</th>
+             <th>Дата, время<br>генерации</th>
+             <th>Общая информация</th>
+             <th>Данные о пользователе</th>
+         </tr>
+
+        {% for req in req_list %}
+            <tr><td align="center">{{ req.pk }}</td>
+                <td>
+                    <p>{{ req.added|date:"d.m.Y, H:i:s" }}</p>
+                    <p>path = {{ req.path }}</p>
+                    <p>secure = {{ req.is_secure }}</p>
+                    <p>ajax = {{ req.is_ajax }}</p>
+
+                </td>
+                <td><textarea>{{ req.content }}</textarea></td>
+                <td><textarea>{{ req.user_info }}</textarea></td></tr>
+            {% empty %}
+                <h3>{% trans "No data to display" %}</h3>
+            {% endfor %}
+    </table>
+    <a href="/">{% trans "Main page" %}</a>
+
+</div>
+
+{% endblock %}
