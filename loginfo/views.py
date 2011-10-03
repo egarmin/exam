@@ -9,4 +9,4 @@ def display_requests(request):
         req_list = LogRequest.objects.filter(pk__lt=11)
     except:
         req_list = None
-    return {'req_list':req_list}
+    return {'req_list': req_list}
