@@ -40,4 +40,3 @@ class MyMiddle:
         new_rec.is_secure = str(request.is_secure())
         new_rec.is_ajax = str(request.is_ajax())
         new_rec.save()
-
