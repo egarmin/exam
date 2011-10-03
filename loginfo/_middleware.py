@@ -19,8 +19,6 @@ class MyMiddle:
         new_rec = LogRequest()
         req_text = '\n*******COMMON INFO*********'
         req_text += '\nmethod = %s' % request.method
-        req_text += '\nsecure = \'%s\'' % str(request.is_secure())
-        req_text += '\najax = \'%s\'' % str(request.is_ajax())
         req_text += '\npath_info = \'%s\'' % request.path_info
         req_text += '\nraw_post_data = \'%s\'' % request.raw_post_data
         req_text += '\nsession_key = %s' % request.session.session_key
@@ -50,4 +48,7 @@ class MyMiddle:
         new_rec.content = req_text
         new_rec.user_info = user_text
         new_rec.path = request.path
+        new_rec.is_secure = request.is_secure()
+        new_rec.is_ajax = request.is_ajax()
         new_rec.save()
+

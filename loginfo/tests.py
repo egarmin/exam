@@ -19,8 +19,8 @@ class MiddlewarePerson(HttpTestCase):
             self.assert_true(False)
         else:
             content = log.content
-            self.assert_true('somevariable1=somevalue1' in content)
-            self.assert_true('somevariable2=somevalue2' in content)
+            self.assert_true('somevariable1 = somevalue1' in content)
+            self.assert_true('somevariable2 = somevalue2' in content)
             self.assert_equal(log.path, '/someurl2/')
 
 
@@ -33,5 +33,5 @@ class TestDisplayRequest(HttpTestCase):
         self.get200(reverse(display_requests))
         for i in range(1, 11):
             self.find('/url_%s/' % i )
-            self.find('var%s=val%s' % (i, i) )
+            self.find('var%s = val%s' % (i, i) )
 

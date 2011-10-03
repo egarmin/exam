@@ -6,20 +6,16 @@
 <h1 align="center">{% trans "The first 10 HTTP requests that are stored by middlware" %}</h1>
 
     <table>
-        <tr><th>Номер по<br>порядку</th>
-             <th>Дата, время<br>генерации</th>
-             <th>Общая информация</th>
-             <th>Данные о пользователе</th>
+        <tr><th>{% trans "Filing" %}<br>{% trans "number" %}</th>
+             <th>{% trans "Time of adding" %}</th>
+             <th>{% trans "Common information" %}</th>
+             <th>{% trans "Information about user" %}</th>
          </tr>
-
         {% for req in req_list %}
             <tr><td align="center">{{ req.pk }}</td>
                 <td>
-                    <p>{{ req.added|date:"d.m.Y, H:i:s" }}</p>
-                    <p>path = {{ req.path }}</p>
-                    <p>secure = {{ req.is_secure }}</p>
-                    <p>ajax = {{ req.is_ajax }}</p>
-
+                    <p>{{ req.added|date:"d.m.Y" }}<br>
+                    {{ req.added|date:"H:i:s" }}</p>
                 </td>
                 <td><textarea>{{ req.content }}</textarea></td>
                 <td><textarea>{{ req.user_info }}</textarea></td></tr>
