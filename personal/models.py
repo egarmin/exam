@@ -11,8 +11,6 @@ class Person(models.Model):
     appendix = models.TextField(verbose_name=_('appendix'), blank=True)
     birthday = models.DateField(verbose_name=_('date of birth'),
                                 blank=True, null=True)
-    phone = models.CharField(max_length=15, verbose_name=_('phone'),
-                             blank=True)
     jid = models.CharField(blank=True, max_length=55,
                              verbose_name=_('jabber'))
     skype = models.CharField(max_length=55, blank=True,
