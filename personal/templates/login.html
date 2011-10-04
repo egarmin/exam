@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block content %}
+<h1>{% trans "Authentication" %}</h1>
+<p>{% trans "Enter your login and password, please." %}</p>
+{% if error_message %}
+<p class="errornote">{{ error_message }}</p>
+{% endif %}
+<form class="auth" method="post" action="{% url django.contrib.auth.views.login %}">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  <table>
+    {{ form.as_table }}
+    <tr><th></th><td><input type="submit" value="Войти"></td></tr>
+  </table>
+</form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

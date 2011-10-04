@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<div class="contact">
+<h1>{% trans "Personal information" %}</h1>
+    <form  action="" name="update" method="POST">{% csrf_token %}
+        <table cellspacing="10">
+        {{ form.as_table }}
+        </table>
+        <button class="butt" type="submit" name="sub">{% trans "Save" %}</button>
+     </form>
+<br>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <div class="middleware">
+        <a href="/">{% trans "Main page" %}</a>
+    </div>
+{% endblock %}
