@@ -32,8 +32,9 @@ class TestDisplayPerson(HttpTestCase):
         self.get200('/')
         self.find('Name')
         self.find('Surname')
-        self.find('Birthday')
+        self.find('Date of birth')
         self.find('Biography')
+<<<<<<< HEAD
         self.find('Phone')
         self.find('E-mail')
 
@@ -45,3 +46,8 @@ class TestContextProcessor(HttpTestCase):
         response = self.client.get('/')
         self.assert_true('settings' in response.context[0],
                          'No django.settings in context.')
+=======
+        self.find('Jabber')
+        self.find('Skype')
+        self.find('Email')
+>>>>>>> t3_middle

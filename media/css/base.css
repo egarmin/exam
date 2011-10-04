@@ -28,30 +28,35 @@ color: black;
 background: white;
 }
 
-
 h1 {
     font-weight:bold;
-    font-size:24px;
-    padding:50px 0 20px 0;
+    font-size:26px;
+    font-family: Georgia,serif;
+    padding:50px 0 40px 50px;
 }
-
-
+.contact{
+    padding-left: 20px;
+}
+.contact div{
+    font-size: 16px;
+    padding-left: 20px;
+}
+.contact p{
+    padding-bottom: 11px;
+}
+.contact1 p{
+    padding-bottom: 20px;
+}
 .contact textarea{
-    height:5pc;
+    height:6pc;
+    width: 20pc;
     word-wrap:break-word;
 }
-
-.contact td{
-    vertical-align: top;
-    font-size: 16px;
-    }
-
 .middleware textarea{
     height: 10pc;
     width: 400px;
     vertical-align: top;
 }
-
 
 .middleware table, tr {
     vertical-align: top;
@@ -66,4 +71,9 @@ h1 {
 .middleware th{
     font-weight: bolder;
     background-color: #b0c4de;
+}
+
+
+.footer{
+    padding: 20px 50px 50px 40px;
 }
