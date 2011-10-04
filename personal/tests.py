@@ -61,7 +61,7 @@ class TestContactEdit(HttpTestCase):
                      'phone': '1234567890'
                      }
         #Login testuser
-        user = self.helper('create_user', 'testuser', 'password')
+        self.helper('create_user', 'testuser', 'password')
         self.login('testuser', 'password')
         #Send post request to edit pers
         self.client.post('/edit/', TEST_DATA)
@@ -89,5 +89,3 @@ class TestAuthPage(HttpTestCase):
         self.login('testuser', 'password')
         self.logout()
         self.url('/')
-
-

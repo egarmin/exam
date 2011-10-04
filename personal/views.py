@@ -45,4 +45,4 @@ def edit_person(request):
                            'phone': pers.phone,
                            'email': pers.email
                            })
-    return {'form':form}
+    return {'form': form}
