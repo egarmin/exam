@@ -1,29 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 {% load i18n %}
-
 <div class="contact">
+    <h1>42 Coffee Cups Test Assignment</h1>
+    <table>
+        <tr><td>
+            <div class="contact1">
+                <p>{% trans "Name" %}: {{ pers.name }}</p>
+                <p>{% trans "Surname" %}: {{ pers.surname }}</p>
+                <p>{% trans "Date of birth" %}: {{ pers.birthday|date:"d.m.Y" }}</p>
+                <p>{% trans "Biography" %}:<br>
+                <textarea>{{ pers.bio }}</textarea></p>
+            </div>
 
-    <h2>{% trans "Hello" %},
-               {% if not request.user.is_authenticated %}
-                   {% trans "stranger" %}</h2>
-               {% else %}
-                   {{ request.user.username }}</h2>
-               {% endif %}
 
+        </td><td>
 
-<h1>{% trans "Personal information" %}</h1>
-     <table id="contact" cellspacing="10">
-         <tr><td>{% trans "Name" %}</td><td>{{ pers.name }}</td></tr>
-         <tr><td>{% trans "Surname" %}</td><td>{{ pers.surname }}</td></tr>
-         <tr><td>{% trans "Biography" %}</td>
-             <td><textarea>{{ pers.bio }}</textarea></td></tr>
-         <tr><td>{% trans "Birthday" %}</td>
-             <td>{{ pers.birthday|date:"d.m.Y" }}</td></tr>
-         <tr><td>{% trans "Phone" %}</td><td>{{ pers.phone }}</td></tr>
-         <tr><td>{% trans "E-mail" %}</td><td>{{ pers.email }}</td></tr>
+            <div class="contact2">
+                <p>{% trans "Contacts" %}</p>
+                <p>{% trans "Email" %}: {{ pers.email }}</p>
+                <p>{% trans "Jabber" %}: {{ pers.jid }}</p>
+                <p>{% trans "Skype" %}: {{ pers.skype }}</p>
+                <p>{% trans "Other contacts" %}:<br>
+                 <textarea>{{ pers.appendix }}</textarea></p>
+            </div>
 
-     </table>
+        </td></tr>
+    </table>
 </div>
-
+   
 {% endblock %}

@@ -33,10 +33,11 @@ class TestDisplayPerson(HttpTestCase):
         self.get200('/')
         self.find('Name')
         self.find('Surname')
-        self.find('Birthday')
+        self.find('Date of birth')
         self.find('Biography')
-        self.find('Phone')
-        self.find('E-mail')
+        self.find('Jabber')
+        self.find('Skype')
+        self.find('Email')
 
 
 class TestContextProcessor(HttpTestCase):
@@ -58,7 +59,8 @@ class TestContactEdit(HttpTestCase):
                      'birthday': '01.01.2010',
                      'bio': 'test_bio',
                      'email': 'test@test.com',
-                     'phone': '1234567890'
+                     'jid': 'test@jabb-jabb.puk',
+                     'skype': 'my.name.is'
                      }
         #Login testuser
         self.helper('create_user', 'testuser', 'password')
@@ -66,7 +68,7 @@ class TestContactEdit(HttpTestCase):
         #Send post request to edit pers
         self.client.post('/edit/', TEST_DATA)
         #Get edited pers
-        pers = Person.objects.get(pk=1)
+        pers = Person.objects.all().order_by('pk')[0]
         #Compare pers members with test dict fields
         self.assert_equal(pers.name, TEST_DATA['name'])
         self.assert_equal(pers.surname, TEST_DATA['surname'])
@@ -74,7 +76,8 @@ class TestContactEdit(HttpTestCase):
                           TEST_DATA['birthday'])
         self.assert_equal(pers.bio, TEST_DATA['bio'])
         self.assert_equal(pers.email, TEST_DATA['email'])
-        self.assert_equal(pers.phone, TEST_DATA['phone'])
+        self.assert_equal(pers.jid, TEST_DATA['jid'])
+        self.assert_equal(pers.skype, TEST_DATA['skype'])
 
 
 class TestAuthPage(HttpTestCase):

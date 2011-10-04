@@ -1,20 +1,15 @@
-[{"pk": 1, "model": "personal.person",
-    "fields": {"bio": "\u0415\u0433\u0430\u0440\u043c\u0438\u043d \u0421\u0442\u0430\u043d\u0438\u0441\u043b\u0430\u0432 \u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440\u043e\u0432\u0438\u0447\r\n\u0420\u043e\u0434\u0438\u043b\u0441\u044f \u0432 \u0421\u0438\u043c\u0444\u0435\u0440\u043e\u043f\u043e\u043b\u0435, \u0443\u0447\u0438\u043b\u0441\u044f \u0432 \u0425\u0430\u0440\u044c\u043a\u043e\u0432\u0435, \u0436\u0438\u0432\u0443 \u0432 \u041e\u0434\u0435\u0441\u0441\u0435\r\n\u0416\u0435\u043d\u0430\u0442, \u0435\u0441\u0442\u044c \u0434\u0432\u0430 \u0441\u044b\u043d\u0430",
-                "surname": "\u0415\u0433\u0430\u0440\u043c\u0438\u043d",
-                "name": "\u0421\u0442\u0430\u043d\u0438\u0441\u043b\u0430\u0432",
-                "phone": "+380632539579",
-                "birthday": "1973-08-01",
-                "email": "ustas078@gmail.com"}
+[
+ {"pk": 1, "model": "personal.person", "fields": {"bio": "\u0420\u043e\u0434\u0438\u043b\u0441\u044f \u0432 \u0421\u0438\u043c\u0444\u0435\u0440\u043e\u043f\u043e\u043b\u0435.\r\n\u0423\u0447\u0438\u043b\u0441\u044f \u0432 \u0425\u0430\u0440\u044c\u043a\u043e\u0432\u0435.\r\n\u041f\u0440\u043e\u0436\u0438\u0432\u0430\u044e \u0432 \u041e\u0434\u0435\u0441\u0441\u0435.\r\n\u0415\u0441\u0442\u044c \u0436\u0435\u043d\u0430 \u0438 \u0434\u0432\u0430 \u0441\u044b\u043d\u0430.",
+ "jid": "ustas@ubuntu-jabber.net",
+ "surname": "\u0421\u0442\u0430\u043d\u0438\u0441\u043b\u0430\u0432",
+ "name": "\u0415\u0433\u0430\u0440\u043c\u0438\u043d",
+ "birthday": "1973-08-01",
+ "appendix": "\u0421\u0432\u044f\u0437\u044c \u0447\u0435\u0440\u0435\u0437 \u043f\u0438\u0446\u0446\u0435\u0440\u0438\u044e.",
+ "skype": "stas.e.garmin", "email": "ustas078@gmail.ru"}
 },
-{"model": "auth.User",
-    "pk": 1,
-    "fields":{
-      "username":"admin",
-      "email": "ustas078@gmail.com",
-      "password" :"sha1$8a197$701eaa53c07ac68e819461f8f5866ecad0889be9",
-      "is_staff": 1,
-      "is_active": 1,
-      "is_superuser": 1
-     }
-}
-]
+ {"pk": 1, "model": "auth.user", "fields": {"username": "admin", "first_name": "",
+ "last_name": "", "is_active": true, "is_superuser": true, "is_staff": true, "last_login": "2011-10-04 18:54:04",
+ "groups": [], "user_permissions": [], "password": "sha1$94c77$06e07a72ee536a1b5dbab69aa8bdb792ca56c960",
+ "email": "ustas078@gmail.com", "date_joined": "2011-10-04 18:53:16"}
+}]
+
