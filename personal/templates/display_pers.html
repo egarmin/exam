@@ -1,27 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 {% load i18n %}
-
-<h1>42 Coffee Cups Test Assignment</h1>
-
 <div class="contact">
+<h1>42 Coffee Cups Test Assignment</h1>
+<table>
+<tr><td>
 <div class="contact1">
-
     <p>{% trans "Name" %}: {{ pers.name }}</p>
     <p>{% trans "Surname" %}: {{ pers.surname }}</p>
     <p>{% trans "Date of birth" %}: {{ pers.birthday|date:"d.m.Y" }}</p>
     <p>{% trans "Biography" %}:<br>
     <textarea>{{ pers.bio }}</textarea></p>
+  </div>
 
-</div>
-<div class="contact2">
+</td><td>
+
+  <div class="contact2">
     <p>{% trans "Contacts" %}</p>
     <p>{% trans "Email" %}: {{ pers.email }}</p>
     <p>{% trans "Jabber" %}: {{ pers.jid }}</p>
     <p>{% trans "Skype" %}: {{ pers.skype }}</p>
     <p>{% trans "Other contacts" %}:<br>
     <textarea>{{ pers.appendix }}</textarea></p>
-</div>
-</div>
+  </div>
 
+ </td></tr>
+</table>
+</div>
+   
 {% endblock %}

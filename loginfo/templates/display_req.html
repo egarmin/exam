@@ -6,7 +6,7 @@
 <h1 align="center">{% trans "The first 10 HTTP requests that are stored by middlware" %}</h1>
 
     <table>
-        <tr><th>{% trans "Filing" %}<br>{% trans "number" %}</th>
+        <tr><th>{% trans "Registration" %}<br>{% trans "number" %}</th>
              <th>{% trans "Time of adding" %}</th>
              <th>{% trans "Common information" %}</th>
              <th>{% trans "Information about user" %}</th>
@@ -30,8 +30,7 @@
 {% endblock %}
 
 {% block footer %}
-    <div class="middleware">
-        <a href="/">{% trans "Main page" %}</a>
-    </div>
+    <a class="footer" href="/">{% trans "Main page" %}</a>
+    <br><br>
 {% endblock %}
 
