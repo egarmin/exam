@@ -3,10 +3,10 @@ from personal.models import Person, Contacts
 from personal.forms import PersonForm, ContactForm
 from django.utils.translation import ugettext_lazy as _
 from personal.decorators import render_to
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
-
+from django.utils import simplejson as json
 
 @render_to('display_pers.html')
 def display_person(request):
@@ -20,14 +20,13 @@ def display_person(request):
 
 
 @login_required
-@render_to('edit_pers.html')
 def edit_person(request):
-    try:
-        pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(person=pers)
-    except:
-        return HttpResponseRedirect('/')
     if request.method == 'POST':
+        try:
+            pers = Person.objects.get(pk=1)
+            cont = Contacts.objects.get(person=pers)
+        except:
+            return HttpResponse('DB error')
         c_form_set = formset_factory(Contacts, formset=ContactForm)
         p_form = PersonForm(request.POST)
         c_form = c_form_set(request.POST)
@@ -48,15 +47,13 @@ def edit_person(request):
             except:
                 p_form.profilesave_error = _('Pers save error. Try later.')
                 c_form.profilesave_error = _('Cont save error. Try later.')
-    else:
-        p_form = PersonForm({'name': pers.name,
-                           'surname': pers.surname,
-                           'bio': pers.bio,
-                           'birthday': pers.birthday
-                           })
-        c_form = ContactForm({'jid': cont.jid,
-                             'skype': cont.skype,
-                             'appendix': cont.appendix,
-                             'email': cont.email
-                           })
-    return {'person_form': p_form, 'contact_form': c_form}
+            out = {}
+        else:
+            out_f = dict()
+            out_f['p'] = p_form.errors
+            out_f['c'] = c_form.errors
+            out = json.dumps(out_f)
+        return HttpResponse(out, mimetype='application/json')
+    return HttpResponse({})
+
+

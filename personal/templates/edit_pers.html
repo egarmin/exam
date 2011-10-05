@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% block title %}
+    42-cc-TEST: edit form
+{% endblock %}
+
 {% block content %}
 
+<script src="{{ MEDIA_URL }}js/jquery-1.5.1.min.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.form.js"></script>
+<script src="{{ MEDIA_URL }}js/myform.js"></script>
+
 <div class="contact">
-<form  action="" name="update" method="POST">{% csrf_token %}
+<form  id="persform" action="" name="update" method="POST">{% csrf_token %}
 
         <table id="etable" width="100%">
             <tr>
                 <td>
                     <table>{{ person_form.as_table }}</table>
                 </td>
-                <td>&nbsp;</td>
+                
                 <td>
                     <table>{{ contact_form.as_table }}</table>
                 </td>
