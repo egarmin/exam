@@ -7,6 +7,10 @@
     <meta name="Description" content="{% block description %}{{ description }}{% endblock %}" />
     <link href="/media/css/base.css" rel="stylesheet" type="text/css" />
     {% block extrahead %}{% endblock %}
+<script type="text/javascript">
+  window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";
+</script>
+{{ contact_form.media }}
 
   </head>
 <body>
