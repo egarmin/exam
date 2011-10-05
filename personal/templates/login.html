@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 {% block content %}
+
 <h1>{% trans "Authentication" %}</h1>
-<p>{% trans "Enter your login and password, please." %}</p>
+<p class="auth">{% trans "Enter your login and password, please." %}</p>
 {% if error_message %}
 <p class="errornote">{{ error_message }}</p>
 {% endif %}
@@ -18,4 +18,8 @@
 {% endblock %}
 
 {% block footer %}
+    <div class="footer">
+        <a href="/">{% trans "Cancel" %}</a>
+    </div>
+
 {% endblock %}

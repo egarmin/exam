@@ -1,19 +1,22 @@
 # -*- coding: utf-8 -*-
-from personal.models import Person
-from personal.forms import PersonForm
+from personal.models import Person, Contacts
+from personal.forms import PersonForm, ContactForm
 from django.utils.translation import ugettext_lazy as _
 from personal.decorators import render_to
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.forms.formsets import formset_factory
 
 
 @render_to('display_pers.html')
 def display_person(request):
     try:
         pers = Person.objects.get(pk=1)
+        cont = Contacts.objects.get(pk=1)
     except:
         pers = None
-    return {'pers': pers}
+        cont = None
+    return {'pers': pers, 'cont': cont}
 
 
 @login_required
@@ -21,28 +24,39 @@ def display_person(request):
 def edit_person(request):
     try:
         pers = Person.objects.get(pk=1)
+        cont = Contacts.objects.get(person=pers)
     except:
         return HttpResponseRedirect('/')
     if request.method == 'POST':
-        form = PersonForm(request.POST)
-        if form.is_valid():
+        c_form_set = formset_factory(Contacts, formset=ContactForm)
+        p_form = PersonForm(request.POST)
+        c_form = c_form_set(request.POST)
+        if p_form.is_valid() and c_form.is_valid():
             try:
-                data = form.cleaned_data
+                data = p_form.cleaned_data
                 pers.name = data['name']
                 pers.surname = data['surname']
-                pers.bio = data['bio']
                 pers.birthday = data['birthday']
-                pers.phone = data['phone']
-                pers.email = data['email']
+                pers.bio = data['bio']
+                data = c_form.cleaned_data
+                cont.jid = data['jid']
+                cont.skype = data['skype']
+                cont.appendix = data['appendix']
+                cont.email = data['email']
                 pers.save()
+                cont.save()
             except:
-                form.profilesave_error = _('Pers info save error. Try later.')
+                p_form.profilesave_error = _('Pers save error. Try later.')
+                c_form.profilesave_error = _('Cont save error. Try later.')
     else:
-        form = PersonForm({'name': pers.name,
+        p_form = PersonForm({'name': pers.name,
                            'surname': pers.surname,
                            'bio': pers.bio,
-                           'birthday': pers.birthday,
-                           'phone': pers.phone,
-                           'email': pers.email
+                           'birthday': pers.birthday
                            })
-    return {'form': form}
+        c_form = ContactForm({'jid': cont.jid,
+                             'skype': cont.skype,
+                             'appendix': cont.appendix,
+                             'email': cont.email
+                           })
+    return {'person_form': p_form, 'contact_form': c_form}

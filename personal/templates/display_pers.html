@@ -1,8 +1,20 @@
 {% extends "base.html" %}
-{% block content %}
 {% load i18n %}
+{% block content %}
+
+
 <div class="contact">
-    <h1>42 Coffee Cups Test Assignment</h1>
+    <div class="toplinks">
+        {% if not request.user.is_authenticated %}
+            <a href="/login/">Login</a>
+        {% else %}
+            <a href="/edit/">Edit</a>
+            |&nbsp;<a href="/accounts/logout/">Logout</a>
+        {% endif %}
+    </div>
+
+
+
     <table>
         <tr><td>
             <div class="contact1">
@@ -18,15 +30,16 @@
 
             <div class="contact2">
                 <p>{% trans "Contacts" %}</p>
-                <p>{% trans "Email" %}: {{ pers.email }}</p>
-                <p>{% trans "Jabber" %}: {{ pers.jid }}</p>
-                <p>{% trans "Skype" %}: {{ pers.skype }}</p>
+                <p>{% trans "Email" %}: {{ cont.email }}</p>
+                <p>{% trans "Jabber" %}: {{ cont.jid }}</p>
+                <p>{% trans "Skype" %}: {{ cont.skype }}</p>
                 <p>{% trans "Other contacts" %}:<br>
-                 <textarea>{{ pers.appendix }}</textarea></p>
+                 <textarea>{{ cont.appendix }}</textarea></p>
             </div>
 
         </td></tr>
     </table>
 </div>
+
    
 {% endblock %}
