@@ -9,10 +9,16 @@
             <tr>
                 <td>
                     <table>{{ person_form.as_table }}</table>
+                    <span class="errorlist">
+                        {{ person_form.save_error }}
+                    </span>
                 </td>
                 <td>&nbsp;</td>
                 <td>
                     <table>{{ contact_form.as_table }}</table>
+                    <span class="errorlist">
+                        {{ contact_form.save_error }}
+                    </span>
                 </td>
             </tr>
 

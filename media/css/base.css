@@ -88,3 +88,7 @@ h1 {
 
 /*********** Edit Form*****************/
 
+.errorlist{
+    font-size: 14px;
+    color: red;
+}
