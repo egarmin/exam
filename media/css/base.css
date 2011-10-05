@@ -98,7 +98,8 @@ h1 {
         left: 50%;
         display: none;
 }
-.errors{
+
+.errorlist{
     font-size: 12px;
     color: red;
 }

@@ -14,24 +14,18 @@ from django.template import loader, RequestContext
 def display_person(request):
     try:
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(pk=1)
     except:
         pers = None
-        cont = None
-    return {'pers': pers, 'cont': cont}
+    contlist = Contacts.objects.filter(person=pers)
+    return {'pers': pers, 'contlist': contlist}
 
 
 @login_required
 def edit_person(request):
-    try:
-        pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(person=pers)
-    except:
-        pers = None
-        cont = None
+    pers = Person.objects.get(pk=1)
+    cont = Contacts.objects.filter(person=pers)[0]
     if request.method == 'POST':
-
-        ajax = request.is_ajax() # 
+        ajax = request.is_ajax() #
         c_form_set = formset_factory(Contacts, formset=ContactForm)
         p_form = PersonForm(request.POST)
         c_form = c_form_set(request.POST)
@@ -51,8 +45,8 @@ def edit_person(request):
                 pers.save()
                 cont.save()
             except:
-                p_form.save_error = _('Pers save error. Try later.')
-                c_form.save_error = _('Cont save error. Try later.')
+                p_form.save_error = _('Person save error. Try later.')
+                c_form.save_error = _('Contacts save error. Try later.')
                 if ajax:
                     out = json.dumps({'status': 'FAIL',
                            'common_nonform_errors': 'DB Saving error'})
