@@ -2,7 +2,7 @@
 from tddspry.django import DatabaseTestCase, HttpTestCase
 from personal.models import Person, Contacts
 import settings
-
+from django.utils import simplejson as json
 
 NEW_NAME = 'newperson'
 TEST_NAME = 'testperson'
@@ -67,7 +67,8 @@ class TestContactEdit(HttpTestCase):
         self.helper('create_user', 'testuser', 'password')
         self.login('testuser', 'password')
         #Send post request to edit pers
-        self.client.post('/edit/', TEST_DATA)
+        self.client.post('/edit/', TEST_DATA,
+                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         #Get edited pers
         pers = Person.objects.get(pk=1)
         cont = Contacts.objects.get(person=pers)
@@ -84,6 +85,8 @@ class TestContactEdit(HttpTestCase):
         self.assert_equal(cont.appendix, TEST_DATA['appendix'])
 
 
+
+
 class TestAuthPage(HttpTestCase):
 
     def test_login(self):
@@ -96,3 +99,31 @@ class TestAuthPage(HttpTestCase):
         self.login('testuser', 'password')
         self.logout()
         self.url('/')
+
+
+class TestAjaxValid(HttpTestCase):
+    
+    def ajax_messages_test(self):
+        FAIL_TEST_DATA = {'name': u'',
+                     'surname': u'',
+                     'birthday': u'abcdef',
+                     'email': u'fail_email',
+                     'jid': u'123123'}
+        self.helper('create_user', 'testuser', 'password')
+        self.login('testuser', 'password')
+
+        response = self.client.post('/edit/', FAIL_TEST_DATA,
+                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        errors = json.loads(response.content)
+        self.assert_equal(errors['pers_errors']['name'][0],
+                            'Enter your name, please.')
+        self.assert_equal(errors['pers_errors']['surname'][0],
+                            'Enter your surname, please.')
+        self.assert_equal(errors['pers_errors']['birthday'][0],
+                           'Enter a valid date.')
+        self.assert_equal(errors['cont_errors']['email'][0],
+                            'Enter a valid e-mail address.')
+        self.assert_equal(errors['cont_errors']['jid'][0],
+                            'Enter a valid jabber ID.')
+
+

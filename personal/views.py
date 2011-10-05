@@ -30,7 +30,8 @@ def edit_person(request):
         c_form_set = formset_factory(Contacts, formset=ContactForm)
         p_form = PersonForm(request.POST)
         c_form = c_form_set(request.POST)
-        if p_form.is_valid() and c_form.is_valid():
+        is_c_valid = c_form.is_valid()
+        if p_form.is_valid() and is_c_valid:
             try:
                 data = p_form.cleaned_data
                 pers.name = data['name']
@@ -54,6 +55,18 @@ def edit_person(request):
             out_f['c'] = c_form.errors
             out = json.dumps(out_f)
         return HttpResponse(out, mimetype='application/json')
-    return HttpResponse({})
-
+    return HttpResponseRedirect('/')
+########################
+else:
+        p_form = PersonForm({'name': pers.name,
+                           'surname': pers.surname,
+                           'bio': pers.bio,
+                           'birthday': pers.birthday
+                           })
+        c_form = ContactForm({'jid': cont.jid,
+                             'skype': cont.skype,
+                             'appendix': cont.appendix,
+                             'email': cont.email
+                           })
+    return {'person_form': p_form, 'contact_form': c_form}
 
