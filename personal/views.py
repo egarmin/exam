@@ -12,7 +12,7 @@ from django.forms.formsets import formset_factory
 def display_person(request):
     try:
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(pk=1)
+        cont = Contacts.objects.filter(person=pers)
     except:
         pers = None
         cont = None
@@ -24,7 +24,7 @@ def display_person(request):
 def edit_person(request):
     try:
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(person=pers)
+        cont = Contacts.objects.filter(person=pers)
     except:
         return HttpResponseRedirect('/')
     if request.method == 'POST':
