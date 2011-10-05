@@ -92,3 +92,13 @@ h1 {
 
 /*********** Edit Form*****************/
 
+#loading{
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        display: none;
+}
+.errors{
+    font-size: 12px;
+    color: red;
+}

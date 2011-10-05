@@ -9,36 +9,46 @@ $(document).ready(function() {
         type:      'post',
         dataType:  'json'
     };
-
+    var links = new Array();
+    $('a').each(function(){
+        links.push(this.href);
+    });
     $('#persform').ajaxForm(options);
-});
+
 
 function showRequest(formData, jqForm, options) {
     //var queryString = $.param(formData);
     $('input, button, textarea').attr('disabled', 'disabled');
+    $('a').click(function(e) {
+        e.preventDefault();});
     $('span.errors').remove();
+    $('#loading').show();
     return true;
 }
-function showResponse(responseText, statusText, xhr, $form)  {
+function showResponse(data, statusText, xhr, $form)  {
     $('#loading').hide();
+    $('a').unbind('click');
     $('input, .butt, textarea').attr('disabled', '');
-    if(responseText == null) window.location.href = '/';
-    for( var k in responseText){
-        $('td:has(#id_'+k+')').append('<span class="errors">'+responseText[k]+'</span>');
-       }
-}
+    $('.errors').remove();
 
-                jQuery(document).ready(function() {
-                    jQuery("#id_birthday").dynDateTime({
-                        ifFormat: "%d.%m.%Y",
-                        align: "cR",
-                        electric: false,
-                        singleClick: true
-                     //   position:
-                    /*	displayArea: ".siblings('.dtcDisplayArea')",*/
-                     //   button: ".next()" //next sibling
-                    });
-                });
+    if(data.status != 'ok') { //validation test
+        for( k in data.pers_errors){
+            out = '<span class="errors"><br>';
+           for(i in data.pers_errors[k]){
+              out += data.pers_errors[k][i];
+           }
+           $('#id_'+ k).after(out + '</span>')
+        }
+
+        for( k in data.cont_errors){
+            out = '<span class="errors"><br>';
+           for(i in data.cont_errors[k]){
+              out += data.cont_errors[k][i];
+           }
+           $('#id_'+ k).after(out + '</span>')
+        }
 
 
-
+    }
+ }
+});
