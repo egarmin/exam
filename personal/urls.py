@@ -11,3 +11,8 @@ urlpatterns += patterns('django.contrib.auth.views',
         {'template_name': 'login.html'}),
     url(r'^accounts/logout/$', 'logout', {'next_page': '/'}),
 )
+
+#For calendar widget
+urlpatterns += patterns('',
+    (r'^jsi18n/', 'django.views.i18n.javascript_catalog'),
+)

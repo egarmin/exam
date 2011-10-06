@@ -5,15 +5,12 @@
 	<title>{% block title %}{{ title }}{% endblock %}</title>
     <meta name="Keywords" content="{% block keywords %}{{ keywords }}{% endblock %}" />
     <meta name="Description" content="{% block description %}{{ description }}{% endblock %}" />
+    {% block extrahead %}{% endblock %}
 
-      <script type="text/javascript">
-        window.__admin_media_prefix__ = "{% filter escapejs %}{{ ADMIN_MEDIA_PREFIX }}{% endfilter %}";
-      </script>
-      {{ person_form.media }}
 
 
     <link href="/media/css/base.css" rel="stylesheet" type="text/css" />
-    {% block extrahead %}{% endblock %}
+ 
 
 
 

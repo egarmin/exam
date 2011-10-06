@@ -8,7 +8,7 @@ class CalendarWidget(forms.TextInput):
     """ Widget for DateFields
     """
     class Media:
-        js = ('/jsi18n',
+        js = ('/jsi18n/',
                 settings.ADMIN_MEDIA_PREFIX + 'js/core.js',
                 settings.ADMIN_MEDIA_PREFIX + 'js/calendar.js',
                 settings.ADMIN_MEDIA_PREFIX + 'js/admin/DateTimeShortcuts.js')
@@ -20,7 +20,7 @@ class CalendarWidget(forms.TextInput):
 
     def __init__(self, attrs={}):
         super(CalendarWidget, self).__init__(attrs={'class': 'vDateField',
-                                                    'size': '10'})
+                                                    'size': '12'})
 
         
 class PersonForm(forms.Form):

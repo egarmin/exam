@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load adminmedia %}
 {% block title %}
     42-cc-TEST: edit form
+{% endblock %}
+
+{% block extrahead %}
+      {{ person_form.media }}
 {% endblock %}
 
 {% block content %}
