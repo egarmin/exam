@@ -3,25 +3,6 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
-
-class CalendarWidget(forms.TextInput):
-    """ Widget for DateFields
-    """
-    class Media:
-        js = ('/jsi18n',
-                settings.ADMIN_MEDIA_PREFIX + 'js/core.js',
-                settings.ADMIN_MEDIA_PREFIX + 'js/calendar.js',
-                settings.ADMIN_MEDIA_PREFIX + 'js/admin/DateTimeShortcuts.js')
-        css = {
-            'all': (
-                settings.ADMIN_MEDIA_PREFIX + 'css/widgets.css',
-            )
-        }
-
-    def __init__(self, attrs={}):
-        super(CalendarWidget, self).__init__(attrs={'class': 'vDateField',
-                                                    'size': '10'})
-
         
 class PersonForm(forms.Form):
     name = forms.CharField(max_length=50, label=_('Name'),
@@ -29,8 +10,7 @@ class PersonForm(forms.Form):
     surname = forms.CharField(max_length=50, label=_('Surname'),
                  error_messages={'required': _("Enter your surname, please.")})
     birthday = forms.DateField(input_formats=["%d.%m.%Y", "%Y-%m-%d"],
-                               label=_("Birthday"), required=False,
-                               widget=CalendarWidget)
+                               label=_("Birthday"), required=False)
     bio = forms.CharField(label=_('Biography'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
 
