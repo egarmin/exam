@@ -33,7 +33,7 @@ function showResponse(data, statusText, xhr, $form)  {
 
     if(data.status != 'ok') { //validation test
         for( k in data.pers_errors){
-            out = '<span class="errors"><br>';
+            out = '<span class="errorlist"><br>';
            for(i in data.pers_errors[k]){
               out += data.pers_errors[k][i];
            }
@@ -41,7 +41,7 @@ function showResponse(data, statusText, xhr, $form)  {
         }
 
         for( k in data.cont_errors){
-            out = '<span class="errors"><br>';
+            out = '<span class="errorlist"><br>';
            for(i in data.cont_errors[k]){
               out += data.cont_errors[k][i];
            }

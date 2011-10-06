@@ -44,16 +44,8 @@ def edit_person(request):
             cont.skype = data['skype']
             cont.appendix = data['appendix']
             cont.email = data['email']
-            try:
-                pers.save()
-                cont.save()
-            except:
-                p_form.save_error = _('Person save error. Try later.')
-                c_form.save_error = _('Contacts save error. Try later.')
-                if ajax:
-                    out = json.dumps({'status': 'FAIL',
-                           'common_nonform_errors': 'DB Saving error'})
-                    return HttpResponse(out, mimetype='application/json')
+            pers.save()
+            cont.save()
             out = {'status': 'ok'}
         else:
             out = {'status': 'FAIL',
@@ -61,7 +53,7 @@ def edit_person(request):
                    'cont_errors': c_form.errors}
         if ajax:
             return HttpResponse(json.dumps(out), mimetype='application/json')
-    else: #return values from DB
+    else:
         p_form = PersonForm({'name': pers.name,
                            'surname': pers.surname,
                            'bio': pers.bio,
