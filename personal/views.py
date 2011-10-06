@@ -26,7 +26,7 @@ def edit_person(request):
     except:
         pers = None
         return HttpResponseRedirect('/')
-    cont = Contacts.objects.filter(person=pers)[0]
+    cont = pers.contacts.all()[0]
     if request.method == 'POST':
         c_form_set = formset_factory(Contacts, formset=ContactForm)
         p_form = PersonForm(request.POST)
