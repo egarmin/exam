@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load owntag %}
 
 {% block title %}
     42-cc-TEST: Main Page
@@ -10,10 +11,12 @@
 
 <div class="contact">
     <div class="toplinks">
+
         {% if not request.user.is_authenticated %}
             <a href="/login/">Login</a>
         {% else %}
             <a href="/edit/">Edit</a>
+            |&nbsp;<a href="{% admin_link request.user %}">(admin)</a>
             |&nbsp;<a href="/accounts/logout/">Logout</a>
         {% endif %}
     </div>
