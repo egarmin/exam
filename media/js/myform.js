@@ -21,7 +21,6 @@ function showRequest(formData, jqForm, options) {
     $('input, button, textarea').attr('disabled', 'disabled');
     $('a').click(function(e) {
         e.preventDefault();});
-    $('span.errors').remove();
     $('#loading').show();
     return true;
 }
@@ -29,7 +28,7 @@ function showResponse(data, statusText, xhr, $form)  {
     $('#loading').hide();
     $('a').unbind('click');
     $('input, .butt, textarea').attr('disabled', '');
-    $('.errors').remove();
+    $('.errorlist').remove();
 
     if(data.status != 'ok') { //validation test
         for( k in data.pers_errors){
