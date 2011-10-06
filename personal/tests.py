@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from tddspry.django import DatabaseTestCase, HttpTestCase
+from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 from personal.models import Person, Contacts
 import settings
 from django.utils import simplejson as json
+from django.template import Template, Context
 
 NEW_NAME = 'newperson'
 TEST_NAME = 'testperson'
@@ -138,3 +139,26 @@ class TestAjaxValid(HttpTestCase):
                             'Enter a valid e-mail address.')
         self.assert_equal(errors['cont_errors']['jid'][0],
                             'Enter a valid jabber ID.')
+
+
+class TestAdminLink(TestCase):
+    """ Test tag that renders the link to its admin edit page """
+
+    def test_admin_link(self):
+        # test for object
+        pers = Person.objects.get(pk=1)
+        perslist = Person.objects.all()
+        pattern = "/admin/{app}/{module}/{obj_pk}/".\
+                format(app=pers._meta.app_label,
+                       module=pers._meta.module_name,
+                       obj_pk=pers.pk)
+        template = Template('{% load owntag %}{% admin_link contact %}')
+        res = template.render(Context({'contact': pers}))
+        self.assert_equal(res, pattern)
+        # test for QuerySet
+        pattern = "/admin/{app}/{module}/".\
+                format(app=perslist.model._meta.app_label,
+                       module=perslist.model._meta.module_name)
+        template = Template('{% load owntag %}{% admin_link contact %}')
+        res = template.render(Context({'contact': perslist}))
+        self.assert_equal(res, pattern)
