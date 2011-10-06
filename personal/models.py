@@ -19,7 +19,7 @@ class Person(models.Model):
 
 
 class Contacts(models.Model):
-    jid = models.CharField(blank=True, max_length=55, 
+    jid = models.CharField(blank=True, max_length=55,
                            verbose_name=_('jabber'))
     skype = models.CharField(max_length=55, blank=True,
                              verbose_name=_('skype'))

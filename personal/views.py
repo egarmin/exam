@@ -32,11 +32,11 @@ def edit_person(request):
         pers = None
         cont = None
     if request.method == 'POST':
-        ajax = request.is_ajax() #
+        ajax = request.is_ajax()
         p_form = PersonForm(request.POST)
         c_form = ContactForm(request.POST)
         is_c_valid = c_form.is_valid()
-        if p_form.is_valid() and is_c_valid:# forms are correct
+        if p_form.is_valid() and is_c_valid:  # forms are correct
             data = p_form.cleaned_data
             pers.name = data['name']
             pers.surname = data['surname']
@@ -60,5 +60,6 @@ def edit_person(request):
         p_form = PersonForm(instance=pers)
         c_form = ContactForm(instance=cont)
         tm = loader.get_template('edit_pers.html')
-        c = RequestContext(request, {'person_form': p_form, 'contact_form': c_form})
+        c = RequestContext(request, {'person_form': p_form,
+                                     'contact_form': c_form})
         return HttpResponse(tm.render(c))

@@ -85,8 +85,6 @@ class TestContactEdit(HttpTestCase):
         self.assert_equal(cont.appendix, TEST_DATA['appendix'])
 
 
-
-
 class TestAuthPage(HttpTestCase):
 
     def test_login(self):
@@ -108,17 +106,16 @@ class TestReverse(HttpTestCase):
         self.login('testuser', 'password')
         self.go('/edit/')
         s = self.show()
-        self.assert_true( s.find('Appendix') < s.find('Email') )
-        self.assert_true( s.find('Email') < s.find('Skype') )
-        self.assert_true( s.find('Skype') < s.find('Jabber') )
-
-        self.assert_true( s.find('Biography') < s.find('Date of birth') )
-        self.assert_true( s.find('Date of birth') < s.find('Surname') )
-        self.assert_true( s.find('Surname') < s.find('Name') )
+        self.assert_true(s.find('Appendix') < s.find('Email'))
+        self.assert_true(s.find('Email') < s.find('Skype'))
+        self.assert_true(s.find('Skype') < s.find('Jabber'))
+        self.assert_true(s.find('Biography') < s.find('Date of birth'))
+        self.assert_true(s.find('Date of birth') < s.find('Surname'))
+        self.assert_true(s.find('Surname') < s.find('Name'))
 
 
 class TestAjaxValid(HttpTestCase):
-    
+    """ Via ajax """
     def ajax_messages_test(self):
         FAIL_TEST_DATA = {'name': u'',
                      'surname': u'',

@@ -34,14 +34,12 @@ class PersonForm(forms.ModelForm):
     bio = forms.CharField(label=_('Biography'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
 
-
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
         self.fields.keyOrder.reverse()
 
     class Meta:
         model = Person
-
 
 
 class ContactForm(forms.ModelForm):
@@ -58,4 +56,3 @@ class ContactForm(forms.ModelForm):
 
     class Meta:
         model = Contacts
-
