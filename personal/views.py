@@ -42,12 +42,8 @@ def edit_person(request):
             cont.skype = data['skype']
             cont.appendix = data['appendix']
             cont.email = data['email']
-            try:
-                pers.save()
-                cont.save()
-            except:
-                p_form.save_error = _('Person save error. Try later.')
-                c_form.save_error = _('Contacts save error. Try later.')
+            pers.save()
+            cont.save()
     else:
         p_form = PersonForm({'name': pers.name,
                            'surname': pers.surname,
