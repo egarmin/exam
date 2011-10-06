@@ -71,7 +71,7 @@ class TestContactEdit(HttpTestCase):
                          HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         #Get edited pers
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(person=pers)
+        cont = Contacts.objects.get(pk=1)
 
         #Compare pers members with test dict fields
         self.assert_equal(pers.name, TEST_DATA['name'])
@@ -101,6 +101,22 @@ class TestAuthPage(HttpTestCase):
         self.url('/')
 
 
+class TestReverse(HttpTestCase):
+
+    def reverse_order_test(self):
+        self.helper('create_user', 'testuser', 'password')
+        self.login('testuser', 'password')
+        self.go('/edit/')
+        s = self.show()
+        self.assert_true( s.find('Appendix') < s.find('Email') )
+        self.assert_true( s.find('Email') < s.find('Skype') )
+        self.assert_true( s.find('Skype') < s.find('Jabber') )
+
+        self.assert_true( s.find('Biography') < s.find('Date of birth') )
+        self.assert_true( s.find('Date of birth') < s.find('Surname') )
+        self.assert_true( s.find('Surname') < s.find('Name') )
+
+
 class TestAjaxValid(HttpTestCase):
     
     def ajax_messages_test(self):
@@ -125,5 +141,3 @@ class TestAjaxValid(HttpTestCase):
                             'Enter a valid e-mail address.')
         self.assert_equal(errors['cont_errors']['jid'][0],
                             'Enter a valid jabber ID.')
-
-
