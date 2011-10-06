@@ -22,6 +22,7 @@ class CalendarWidget(forms.TextInput):
         super(CalendarWidget, self).__init__(attrs={'class': 'vDateField',
                                                     'size': '10'})
 
+        
 class PersonForm(forms.Form):
     name = forms.CharField(max_length=50, label=_('Name'),
                  error_messages={'required': _("Enter your name, please.")})

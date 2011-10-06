@@ -22,8 +22,11 @@ def display_person(request):
 
 @login_required
 def edit_person(request):
-    pers = Person.objects.get(pk=1)
-    cont = Contacts.objects.filter(person=pers)[0]
+    try:
+        pers = Person.objects.get(pk=1)
+    except:
+        pers = None
+    cont = pers.contacts.all()[0]
     if request.method == 'POST':
         ajax = request.is_ajax() #
         c_form_set = formset_factory(Contacts, formset=ContactForm)
