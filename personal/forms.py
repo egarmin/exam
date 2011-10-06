@@ -23,14 +23,14 @@ class CalendarWidget(forms.TextInput):
         super(CalendarWidget, self).__init__(attrs={'class': 'vDateField',
                                                     'size': '12'})
 
-        
+
 class PersonForm(forms.ModelForm):
     name = forms.CharField(max_length=50, label=_('Name'),
                  error_messages={'required': _("Enter your name, please.")})
     surname = forms.CharField(max_length=50, label=_('Surname'),
                  error_messages={'required': _("Enter your surname, please.")})
     birthday = forms.DateField(input_formats=["%d.%m.%Y", "%Y-%m-%d"],
-                               label=_("Birthday"), required=False)
+                               label=_("Date of birth"), required=False)
     bio = forms.CharField(label=_('Biography'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
 
@@ -41,6 +41,7 @@ class PersonForm(forms.ModelForm):
 
     class Meta:
         model = Person
+
 
 
 class ContactForm(forms.ModelForm):

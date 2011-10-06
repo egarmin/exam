@@ -6,6 +6,8 @@ from personal.decorators import render_to
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
+from django.forms.models import modelformset_factory, inlineformset_factory
+
 from django.utils import simplejson as json
 from django.template import loader, RequestContext
 
@@ -14,24 +16,25 @@ from django.template import loader, RequestContext
 def display_person(request):
     try:
         pers = Person.objects.get(pk=1)
+        cont = Contacts.objects.get(pk=1)
     except:
         pers = None
-    contlist = Contacts.objects.filter(person=pers)
-    return {'pers': pers, 'contlist': contlist}
+        cont = None
+    return {'pers': pers, 'cont': cont}
 
 
 @login_required
 def edit_person(request):
     try:
         pers = Person.objects.get(pk=1)
+        cont = Contacts.objects.get(pk=1)
     except:
         pers = None
-    cont = pers.contacts.all()[0]
+        cont = None
     if request.method == 'POST':
         ajax = request.is_ajax() #
-        c_form_set = formset_factory(Contacts, formset=ContactForm)
         p_form = PersonForm(request.POST)
-        c_form = c_form_set(request.POST)
+        c_form = ContactForm(request.POST)
         is_c_valid = c_form.is_valid()
         if p_form.is_valid() and is_c_valid:# forms are correct
             data = p_form.cleaned_data
@@ -54,16 +57,8 @@ def edit_person(request):
         if ajax:
             return HttpResponse(json.dumps(out), mimetype='application/json')
     else:
-        p_form = PersonForm({'name': pers.name,
-                           'surname': pers.surname,
-                           'bio': pers.bio,
-                           'birthday': pers.birthday
-                           })
-        c_form = ContactForm({'jid': cont.jid,
-                             'skype': cont.skype,
-                             'appendix': cont.appendix,
-                             'email': cont.email
-                           })
+        p_form = PersonForm(instance=pers)
+        c_form = ContactForm(instance=cont)
         tm = loader.get_template('edit_pers.html')
         c = RequestContext(request, {'person_form': p_form, 'contact_form': c_form})
         return HttpResponse(tm.render(c))

@@ -14,36 +14,26 @@
 <script src="{{ MEDIA_URL }}js/jquery.form.js"></script>
 <script src="{{ MEDIA_URL }}js/myform.js"></script>
 
-
-    <img id="loading" src="{{ MEDIA_URL }}img/image_loader.gif">
-
+<img id="loading" src="{{ MEDIA_URL }}img/image_loader.gif">
 
 <div class="contact">
 <form  id="persform" action="" name="update" method="POST">{% csrf_token %}
-
         <table id="etable" width="100%">
             <tr>
                 <td>
                     <table>{{ person_form.as_table }}</table>
                     <span class="errorlist">
-                        {{ person_form.save_error }}
                     </span>
                 </td>
-                
                 <td>
                     <table>{{ contact_form.as_table }}</table>
                     <span class="errorlist">
-                        {{ contact_form.save_error }}
                     </span>
                 </td>
             </tr>
-
-                      
-
         </table>
         <button class="butt" type="submit" name="sub">{% trans "Save" %}</button>
         <a href="/">{% trans "Cancel" %}</a>
-
      </form>
 </div>
 <br>
