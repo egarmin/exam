@@ -21,7 +21,7 @@ function showRequest(formData, jqForm, options) {
     $('input, button, textarea').attr('disabled', 'disabled');
     $('a').click(function(e) {
         e.preventDefault();});
-    $('span.errors').remove();
+    $('.errorlist').remove();
     $('#loading').show();
     return true;
 }
