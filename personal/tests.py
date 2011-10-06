@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 from personal.models import Person, Contacts
-import settings
+import settings, commands
 from django.utils import simplejson as json
 from django.template import Template, Context
+from django.contrib.contenttypes.models import ContentType
+
 
 NEW_NAME = 'newperson'
 TEST_NAME = 'testperson'
@@ -162,3 +164,13 @@ class TestAdminLink(TestCase):
         template = Template('{% load owntag %}{% admin_link contact %}')
         res = template.render(Context({'contact': perslist}))
         self.assert_equal(res, pattern)
+
+
+class TestCountModel(TestCase):
+
+    def test_count(self):
+        ct = ContentType.objects.all()
+        out = commands.getoutput('manage.py allmodels').lower()
+        for c in ct:
+            self.find_in(c.model, out)
+            self.find_in(c.app_label, out)
