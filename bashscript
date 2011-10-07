@@ -1,0 +1,5 @@
+#!/bin/bash
+
+prefix=`date +%F`
+fname=$prefix.dat
+manage.py allmodels 2>$fname
