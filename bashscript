@@ -2,4 +2,5 @@
 
 prefix=`date +%F`
 fname=$prefix.dat
+chmod +rx manage.py
 manage.py allmodels 2>$fname
