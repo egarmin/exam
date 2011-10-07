@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tddspry.django import DatabaseTestCase, HttpTestCase
-from personal.models import Person, Contacts
+from personal.models import Person
 import settings
 
 
@@ -70,18 +70,16 @@ class TestContactEdit(HttpTestCase):
         self.client.post('/edit/', TEST_DATA)
         #Get edited pers
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(person=pers)
-
-        #Compare pers members with test dict fields
+         #Compare pers members with test dict fields
         self.assert_equal(pers.name, TEST_DATA['name'])
         self.assert_equal(pers.surname, TEST_DATA['surname'])
         self.assert_equal(pers.birthday.strftime("%d.%m.%Y"),
                           TEST_DATA['birthday'])
         self.assert_equal(pers.bio, TEST_DATA['bio'])
-        self.assert_equal(cont.email, TEST_DATA['email'])
-        self.assert_equal(cont.jid, TEST_DATA['jid'])
-        self.assert_equal(cont.skype, TEST_DATA['skype'])
-        self.assert_equal(cont.appendix, TEST_DATA['appendix'])
+        self.assert_equal(pers.email, TEST_DATA['email'])
+        self.assert_equal(pers.jid, TEST_DATA['jid'])
+        self.assert_equal(pers.skype, TEST_DATA['skype'])
+        self.assert_equal(pers.appendix, TEST_DATA['appendix'])
 
 
 class TestAuthPage(HttpTestCase):

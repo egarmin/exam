@@ -21,7 +21,7 @@ h1 {
     padding-left: 20px;
 }
 .contact1 p{
-    padding-bottom: 0;
+    padding-bottom: 11px;
 }
 .contact textarea{
     font-size: 14px;
@@ -89,6 +89,10 @@ h1 {
 /*********** Edit Form*****************/
 
 .errorlist{
-    font-size: 14px;
+    font-size: 13px;
     color: red;
+
+}
+#persform{
+    padding-left: 30px;
 }

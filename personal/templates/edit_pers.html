@@ -3,46 +3,43 @@
 {% block content %}
 
 <div class="contact">
-<form  action="" name="update" method="POST">{% csrf_token %}
-        <table id="etable" width="100%">
+   <form  id="persform" action="" name="update" method="POST">{% csrf_token %}
+       <table id="etable" width="90%">
+         <tr>
+           <td>
+            <table>
+               {% for field in person_form %}
+                   {% if forloop.counter0 < index %}
+                   <tr>
 
-<tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr>
+                  <th>{{ field.label_tag }}</th><td>{{ field }}
+                       {{ field.errors }}
+                  </td>
 
-<div style="float: left;">1<br>
-
-
-2<br>
-3</div>
-
-<div>4<br>
-5<br>
-6</div>
-
-      <tr>
-{% for field in person_form%}
-               {% if forloop.counter > index %}
-                   <tr> <td>
-                {% endif %}
-
-            <tr><td>{{ field.errors }}</td></tr>
-            <tr><td>{{ field.label_tag }}</td><td>{{ field }}</td></tr>
-
-                {% if forloop.counter > index %}
-                    </td></tr>
-                {% endif %}
-
-
-            {% endfor %}
-<span class="errorlist">                   </span>
-
-        </tr>
-        </table>
-        <button class="butt" type="submit" name="sub">{% trans "Save" %}</button>
-        <a href="/">{% trans "Cancel" %}</a>
-     </form>
+                   </tr>
+                   {% endif %}
+               {% endfor %}
+            </table>
+           </td>
+           <td>
+            <table>
+               {% for field in person_form %}
+                   {% if forloop.counter > index %}
+                   <tr>
+                  <td>{{ field.errors }}</td>
+                  <th>{{ field.label_tag }}</th><td>{{ field }}</td>
+                   </tr>
+                   {% endif %}
+               {% endfor %}
+            </table>
+           </td>
+         </tr>
+       </table>
+       <button class="butt" type="submit" name="sub">{% trans "Save" %}</button>
+       <a href="/">{% trans "Cancel" %}</a>
+   </form>
 </div>
 <br>
-
 {% endblock %}
 
 
