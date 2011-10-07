@@ -5,8 +5,8 @@ from django.conf import settings
 from personal.models import Person, Contacts
 
 
-class CalendarWidget(forms.TextInput):
-    """ Widget for DateFields
+class CalendarWidget(forms.DateInput):
+    """ Widget for Сalendar
     """
     class Media:
         js = ('/jsi18n/',
@@ -30,7 +30,8 @@ class PersonForm(forms.ModelForm):
     surname = forms.CharField(max_length=50, label=_('Surname'),
                  error_messages={'required': _("Enter your surname, please.")})
     birthday = forms.DateField(input_formats=["%d.%m.%Y", "%Y-%m-%d"],
-                               label=_("Date of birth"), required=False)
+                               label=_("Date of birth"), required=False,
+                               widget=CalendarWidget)
     bio = forms.CharField(label=_('Biography'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
 

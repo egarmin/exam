@@ -21,3 +21,4 @@ class PersonAdmin(admin.ModelAdmin):
 
 admin.site.register(Contacts, ContactsAdmin)
 admin.site.register(Person, PersonAdmin)
+
