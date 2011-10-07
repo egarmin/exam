@@ -2,7 +2,9 @@
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 from personal.models import Person, Contacts
 import settings
-import commands
+import sys
+from StringIO import StringIO
+from django.core.management import call_command
 from django.utils import simplejson as json
 from django.template import Template, Context
 from django.contrib.contenttypes.models import ContentType
@@ -171,8 +173,18 @@ class TestCountModel(TestCase):
 
     def test_count(self):
         ct = ContentType.objects.all()
-        commands.getoutput('chmod +rx bashscript')
-        out = commands.getoutput('bashscript')
+        old_out = sys.stdout
+        old_err = sys.stderr
+        out_out = StringIO()
+        out_err = StringIO()
+        sys.stdout = out_out
+        sys.stderr = out_err
+        call_command('allmodels')
+        sys.stdout = old_out
+        sys.stderr = old_err
         for c in ct:
-            self.find_in(c.model, out)
-            self.find_in(c.app_label, out)
+            self.find_in(c.model, out_out.getvalue().lower())
+            self.find_in(c.model, out_err.getvalue().lower())
+            self.find_in(c.app_label, out_out.getvalue().lower())
+            self.find_in(c.app_label, out_err.getvalue().lower())
+        self.find_in('error:', out_err.getvalue().lower())
