@@ -28,22 +28,12 @@ def edit_person(request):
     except (Person.DoesNotExist, Contacts.DoesNotExist):
         return HttpResponseRedirect('/')
     if request.method == 'POST':
-        p_form = PersonForm(request.POST)
-        c_form = ContactForm(request.POST)
+        p_form = PersonForm(instance=pers, data=request.POST)
+        c_form = ContactForm(instance=cont, data=request.POST)
         is_c_valid = c_form.is_valid()
         if p_form.is_valid() and is_c_valid:  # forms are correct
-            data = p_form.cleaned_data
-            pers.name = data['name']
-            pers.surname = data['surname']
-            pers.birthday = data['birthday']
-            pers.bio = data['bio']
-            data = c_form.cleaned_data
-            cont.jid = data['jid']
-            cont.skype = data['skype']
-            cont.appendix = data['appendix']
-            cont.email = data['email']
-            pers.save()
-            cont.save()
+            p_form.save()
+            c_form.save()
             if request.is_ajax():
                 out = {'status': 'ok'}
                 return HttpResponse(json.dumps(out), mimetype='application/json')
@@ -51,10 +41,10 @@ def edit_person(request):
                               {'person_form': p_form, 'contact_form': c_form},
                               context_instance=RequestContext(request))
         else:
-            out = {'status': 'FAIL',
-                   'pers_errors': p_form.errors,
-                   'cont_errors': c_form.errors}
             if request.is_ajax():
+                out = {'status': 'FAIL',
+                       'pers_errors': p_form.errors,
+                       'cont_errors': c_form.errors}
                 return HttpResponse(json.dumps(out), mimetype='application/json')
             return HttpResponseRedirect('/edit/')
     else:
