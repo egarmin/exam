@@ -171,6 +171,7 @@ class TestCountModel(TestCase):
 
     def test_count(self):
         ct = ContentType.objects.all()
+        commands.getoutput('chmod +rx bashscript')
         out = commands.getoutput('bashscript')
         for c in ct:
             self.find_in(c.model, out)
