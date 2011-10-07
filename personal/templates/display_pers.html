@@ -17,9 +17,6 @@
             |&nbsp;<a href="/accounts/logout/">Logout</a>
         {% endif %}
     </div>
-
-
-
     <table>
         <tr><td>
             <div class="contact1">
@@ -29,24 +26,16 @@
                 <p>{% trans "Biography" %}:<br>
                 <textarea>{{ pers.bio }}</textarea></p>
             </div>
-
-
         </td><td>
-
             <div class="contact2">
                 <p>{% trans "Contacts" %}</p>
-                {% for cont in contlist %}
                     <p>{% trans "Email" %}: {{ cont.email }}</p>
                     <p>{% trans "Jabber" %}: {{ cont.jid }}</p>
                     <p>{% trans "Skype" %}: {{ cont.skype }}</p>
                     <p>{% trans "Other contacts" %}:<br>
                     <textarea>{{ cont.appendix }}</textarea></p>
-                {% endfor %}
             </div>
-
         </td></tr>
     </table>
 </div>
-
-   
 {% endblock %}

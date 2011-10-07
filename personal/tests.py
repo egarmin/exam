@@ -71,7 +71,7 @@ class TestContactEdit(HttpTestCase):
                          HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         #Get edited pers
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(person=pers)
+        cont = Contacts.objects.get(pk=1)
 
         #Compare pers members with test dict fields
         self.assert_equal(pers.name, TEST_DATA['name'])
@@ -83,8 +83,6 @@ class TestContactEdit(HttpTestCase):
         self.assert_equal(cont.jid, TEST_DATA['jid'])
         self.assert_equal(cont.skype, TEST_DATA['skype'])
         self.assert_equal(cont.appendix, TEST_DATA['appendix'])
-
-
 
 
 class TestAuthPage(HttpTestCase):

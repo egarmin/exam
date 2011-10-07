@@ -9,19 +9,13 @@ $(document).ready(function() {
         type:      'post',
         dataType:  'json'
     };
-    var links = new Array();
-    $('a').each(function(){
-        links.push(this.href);
-    });
+
     $('#persform').ajaxForm(options);
 
-
 function showRequest(formData, jqForm, options) {
-    //var queryString = $.param(formData);
     $('input, button, textarea').attr('disabled', 'disabled');
     $('a').click(function(e) {
         e.preventDefault();});
-    //$('.errorlist').remove();
     $('#loading').show();
     return true;
 }
