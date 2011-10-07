@@ -2,12 +2,15 @@
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 from personal.models import Person, Contacts
 import settings
+import commands
 import sys
+from os import path, unlink
 from StringIO import StringIO
 from django.core.management import call_command
 from django.utils import simplejson as json
 from django.template import Template, Context
 from django.contrib.contenttypes.models import ContentType
+from datetime import date
 
 
 NEW_NAME = 'newperson'
@@ -170,6 +173,22 @@ class TestAdminLink(TestCase):
 
 
 class TestCountModel(TestCase):
+    """  Count model, dat-file
+    """
+    def test_script_file(self):
+        filename = date.today().strftime('%Y-%m-%d') + '.dat'
+        try:
+            unlink(filename)
+        except OSError:
+            pass
+        commands.getoutput('chmod +rx bashscript')
+        commands.getoutput('bashscript')
+        out = open(filename).read()
+        ct = ContentType.objects.all()
+        for c in ct:
+            self.find_in(c.model, out.lower())
+            self.find_in(c.app_label, out.lower())
+        self.find_in('error:', out)
 
     def test_count(self):
         ct = ContentType.objects.all()
