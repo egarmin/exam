@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 from personal.models import Person, Contacts
-import settings, commands
+import settings
+import commands
 from django.utils import simplejson as json
 from django.template import Template, Context
 from django.contrib.contenttypes.models import ContentType
@@ -170,7 +171,7 @@ class TestCountModel(TestCase):
 
     def test_count(self):
         ct = ContentType.objects.all()
-        out = commands.getoutput('manage.py allmodels').lower()
+        out = commands.getoutput('bashscript')
         for c in ct:
             self.find_in(c.model, out)
             self.find_in(c.app_label, out)
