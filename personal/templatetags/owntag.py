@@ -14,7 +14,7 @@ def admin_link(arg):
         app = arg.model._meta.app_label
         module = arg.model._meta.module_name
     else:
-        error = "The elink's argument must be a model or QuerySet. %s isn't a model." % arg
+        error = "The admin_link's argument must be a model or QuerySet. %s is not." % arg
         raise template.TemplateSyntaxError(error)
     res_link = '/admin/%s/%s/' % (app, module)
     if hasattr(arg, 'id'):
