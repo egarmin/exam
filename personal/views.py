@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 from personal.models import Person, Contacts
 from personal.forms import PersonForm, ContactForm
-from django.utils.translation import ugettext_lazy as _
 from personal.decorators import render_to
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from django.forms.formsets import formset_factory
-from django.forms.models import modelformset_factory, inlineformset_factory
-
 from django.utils import simplejson as json
 from django.template import loader, RequestContext
 
