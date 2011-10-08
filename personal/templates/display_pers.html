@@ -7,7 +7,6 @@
 
 {% block content %}
 
-
 <div class="contact">
     <div class="toplinks">
         {% if not request.user.is_authenticated %}
@@ -28,12 +27,12 @@
             </div>
         </td><td>
             <div class="contact2">
-                <p>{% trans "Contacts" %}</p>
-                    <p>{% trans "Email" %}: {{ cont.email }}</p>
-                    <p>{% trans "Jabber" %}: {{ cont.jid }}</p>
-                    <p>{% trans "Skype" %}: {{ cont.skype }}</p>
+                    <p>{% trans "Contacts" %}</p>
+                    <p>{% trans "Email" %}: {{ pers.email }}</p>
+                    <p>{% trans "Jabber" %}: {{ pers.jid }}</p>
+                    <p>{% trans "Skype" %}: {{ pers.skype }}</p>
                     <p>{% trans "Other contacts" %}:<br>
-                    <textarea>{{ cont.appendix }}</textarea></p>
+                    <textarea>{{ pers.appendix }}</textarea></p>
             </div>
         </td></tr>
     </table>

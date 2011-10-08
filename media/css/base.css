@@ -105,5 +105,9 @@ h1 {
 }
 
 .datetimeshortcuts{
-    font-size: 14px;
+    font-size: 13px;
+
+}
+#persform{
+    padding-left: 30px;
 }
