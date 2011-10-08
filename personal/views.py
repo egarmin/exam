@@ -20,13 +20,12 @@ def display_person(request):
 
 @login_required
 def edit_person(request):
-    index = 4
+    index = len(PersonForm.base_fields.keyOrder)/2
     try:
         pers = Person.objects.get(pk=1)
     except Person.DoesNotExist:
         return HttpResponseRedirect('/')
     if request.method == 'POST':
-        #p_form = PersonForm(request.POST)
         p_form = PersonForm(instance=pers, data=request.POST)
         if p_form.is_valid():  # forms are correct
             p_form.save()

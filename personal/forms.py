@@ -30,7 +30,7 @@ class PersonForm(forms.ModelForm):
     surname = forms.CharField(max_length=50, label=_('Surname:'),
                  error_messages={'required': _("Enter your surname, please.")})
     birthday = forms.DateField(input_formats=["%d.%m.%Y", "%Y-%m-%d"],
-                               label=_("Birthday"), required=False,
+                               label=_("Date of birth"), required=False,
                                widget=CalendarWidget)
     bio = forms.CharField(label=_('Biography:'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
@@ -41,9 +41,14 @@ class PersonForm(forms.ModelForm):
     appendix = forms.CharField(label=_('Appendix:'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
 
- #   def __init__(self, *args, **kwargs):
- #       super(PersonForm, self).__init__(*args, **kwargs)
- #       self.fields.keyOrder.reverse()
+    def __init__(self, *args, **kwargs):
+        super(PersonForm, self).__init__(*args, **kwargs)
+        rev =[]
+        index = len(self.fields.keyOrder)/2
+        order = self.fields.keyOrder
+        rev = order[index:] + order[:index]
+        rev.reverse()
+        self.fields.keyOrder = rev
 
     class Meta:
         model = Person
