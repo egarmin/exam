@@ -8,7 +8,6 @@
 
 {% block content %}
 
-
 <div class="contact">
     <div class="toplinks">
 
@@ -20,9 +19,6 @@
             |&nbsp;<a href="/accounts/logout/">Logout</a>
         {% endif %}
     </div>
-
-
-
     <table>
         <tr><td>
             <div class="contact1">
@@ -32,22 +28,16 @@
                 <p>{% trans "Biography" %}:<br>
                 <textarea>{{ pers.bio }}</textarea></p>
             </div>
-
-
         </td><td>
-
             <div class="contact2">
-                <p>{% trans "Contacts" %}</p>
-                    <p>{% trans "Email" %}: {{ cont.email }}</p>
-                    <p>{% trans "Jabber" %}: {{ cont.jid }}</p>
-                    <p>{% trans "Skype" %}: {{ cont.skype }}</p>
+                    <p>{% trans "Contacts" %}</p>
+                    <p>{% trans "Email" %}: {{ pers.email }}</p>
+                    <p>{% trans "Jabber" %}: {{ pers.jid }}</p>
+                    <p>{% trans "Skype" %}: {{ pers.skype }}</p>
                     <p>{% trans "Other contacts" %}:<br>
-                    <textarea>{{ cont.appendix }}</textarea></p>
+                    <textarea>{{ pers.appendix }}</textarea></p>
             </div>
-
         </td></tr>
     </table>
 </div>
-
-   
 {% endblock %}

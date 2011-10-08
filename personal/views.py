@@ -1,65 +1,46 @@
 # -*- coding: utf-8 -*-
-from personal.models import Person, Contacts
-from personal.forms import PersonForm, ContactForm
-from django.utils.translation import ugettext_lazy as _
+from personal.models import Person
+from personal.forms import PersonForm
 from personal.decorators import render_to
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.forms.formsets import formset_factory
-from django.forms.models import modelformset_factory, inlineformset_factory
-
 from django.utils import simplejson as json
-from django.template import loader, RequestContext
+from django.template import RequestContext
+from django.shortcuts import render_to_response
 
 
 @render_to('display_pers.html')
 def display_person(request):
     try:
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(pk=1)
-    except:
+    except Person.DoesNotExist:
         pers = None
-        cont = None
-    return {'pers': pers, 'cont': cont}
+    return {'pers': pers}
 
 
 @login_required
 def edit_person(request):
+    index = len(PersonForm.base_fields.keyOrder) / 2
     try:
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(pk=1)
-    except:
-        pers = None
-        cont = None
+    except Person.DoesNotExist:
+        return HttpResponseRedirect('/')
     if request.method == 'POST':
-        ajax = request.is_ajax()
-        p_form = PersonForm(request.POST)
-        c_form = ContactForm(request.POST)
-        is_c_valid = c_form.is_valid()
-        if p_form.is_valid() and is_c_valid:  # forms are correct
-            data = p_form.cleaned_data
-            pers.name = data['name']
-            pers.surname = data['surname']
-            pers.birthday = data['birthday']
-            pers.bio = data['bio']
-            data = c_form.cleaned_data
-            cont.jid = data['jid']
-            cont.skype = data['skype']
-            cont.appendix = data['appendix']
-            cont.email = data['email']
-            pers.save()
-            cont.save()
+        p_form = PersonForm(instance=pers, data=request.POST)
+        if p_form.is_valid():  # forms are correct
+            p_form.save()
             out = {'status': 'ok'}
         else:
-            out = {'status': 'FAIL',
-                   'pers_errors': p_form.errors,
-                   'cont_errors': c_form.errors}
-        if ajax:
-            return HttpResponse(json.dumps(out), mimetype='application/json')
+            out = {'status': 'fail',
+                   'pers_errors': p_form.errors}
+        if request.is_ajax():
+                return HttpResponse(json.dumps(out),
+                                    mimetype='application/json')
+        return render_to_response('edit_pers.html',
+                              {'person_form': p_form, 'index': index},
+                              context_instance=RequestContext(request))
     else:
         p_form = PersonForm(instance=pers)
-        c_form = ContactForm(instance=cont)
-        tm = loader.get_template('edit_pers.html')
-        c = RequestContext(request, {'person_form': p_form,
-                                     'contact_form': c_form})
-        return HttpResponse(tm.render(c))
+        return render_to_response('edit_pers.html',
+                              {'person_form': p_form, 'index': index},
+                              context_instance=RequestContext(request))

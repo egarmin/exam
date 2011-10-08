@@ -9,16 +9,6 @@ class Person(models.Model):
     birthday = models.DateField(verbose_name=_('date of birth'),
                                 blank=True, null=True)
     bio = models.TextField(verbose_name=_('biography'), blank=True)
-
-    class Meta:
-        verbose_name = _('person')
-        verbose_name_plural = _('people')
-
-    def __unicode__(self):
-        return '%s %s' % (self.name, self.surname)
-
-
-class Contacts(models.Model):
     jid = models.CharField(blank=True, max_length=55,
                            verbose_name=_('jabber'))
     skype = models.CharField(max_length=55, blank=True,
@@ -28,5 +18,8 @@ class Contacts(models.Model):
     appendix = models.TextField(verbose_name=_('appendix'), blank=True)
 
     class Meta:
-        verbose_name = _('contact')
-        verbose_name_plural = _('contacts')
+        verbose_name = _('person')
+        verbose_name_plural = _('people')
+
+    def __unicode__(self):
+        return '%s %s' % (self.name, self.surname)
