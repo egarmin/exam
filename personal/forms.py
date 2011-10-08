@@ -43,8 +43,8 @@ class PersonForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
-        rev =[]
-        index = len(self.fields.keyOrder)/2
+        rev = []
+        index = len(self.fields.keyOrder) / 2
         order = self.fields.keyOrder
         rev = order[index:] + order[:index]
         rev.reverse()

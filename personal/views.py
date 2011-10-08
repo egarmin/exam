@@ -20,7 +20,7 @@ def display_person(request):
 
 @login_required
 def edit_person(request):
-    index = len(PersonForm.base_fields.keyOrder)/2
+    index = len(PersonForm.base_fields.keyOrder) / 2
     try:
         pers = Person.objects.get(pk=1)
     except Person.DoesNotExist:
@@ -31,10 +31,11 @@ def edit_person(request):
             p_form.save()
             out = {'status': 'ok'}
         else:
-            out = {'status': 'FAIL',
+            out = {'status': 'fail',
                    'pers_errors': p_form.errors}
         if request.is_ajax():
-                return HttpResponse(json.dumps(out), mimetype='application/json')
+                return HttpResponse(json.dumps(out),
+                                    mimetype='application/json')
         return render_to_response('edit_pers.html',
                               {'person_form': p_form, 'index': index},
                               context_instance=RequestContext(request))
