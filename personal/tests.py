@@ -168,7 +168,7 @@ class TestCountModel(TestCase):
     """  Count model, dat-file
     """
     def test_script_file(self):
-        filename = date.today().strftime('%Y-%m-%d') + '.dat'
+        filename = '/tmp/' + date.today().strftime('%Y-%m-%d') + '.dat'
         try:
             unlink(filename)
         except OSError:
