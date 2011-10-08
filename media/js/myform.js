@@ -33,16 +33,6 @@ function showResponse(data, statusText, xhr, $form)  {
            }
            $('#id_'+ k).after(out + '</span>')
         }
-
-        for( k in data.cont_errors){
-            out = '<span class="errorlist"><br>';
-           for(i in data.cont_errors[k]){
-              out += data.cont_errors[k][i];
-           }
-           $('#id_'+ k).after(out + '</span>')
-        }
-
-
     }
  }
 });

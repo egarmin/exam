@@ -19,35 +19,43 @@
 
 
 <div class="contact">
-<form  id="persform" action="" name="update" method="POST">{% csrf_token %}
-
-        <table id="etable" width="100%">
-            <tr>
-                <td>
-                    <table>{{ person_form.as_table }}</table>
-                    <span class="errorlist">
-                        {{ person_form.save_error }}
-                    </span>
-                </td>
-                
-                <td>
-                    <table>{{ contact_form.as_table }}</table>
-                    <span class="errorlist">
-                        {{ contact_form.save_error }}
-                    </span>
-                </td>
-            </tr>
-
-                      
-
-        </table>
-        <button class="butt" type="submit" name="sub">{% trans "Save" %}</button>
-        <a href="/">{% trans "Cancel" %}</a>
-
-     </form>
+   <form  id="persform" action="" name="update" method="POST">{% csrf_token %}
+       <table id="etable" width="90%">
+         <tr>
+           <td>
+            <table>
+               {% for field in person_form %}
+                   {% if forloop.counter0 < index %}
+                   <tr>
+                  <th>{{ field.label_tag }}</th><td>{{ field }}
+                       {{ field.errors }}
+                  </td>
+                   </tr>
+                   {% endif %}
+               {% endfor %}
+            </table>
+           </td>
+           <td>
+            <table>
+               {% for field in person_form %}
+                   {% if forloop.counter > index %}
+                   <tr>
+                  <td></td>
+                  <th>{{ field.label_tag }}</th><td>{{ field }}
+                      {{ field.errors }}
+                   </td>
+                   </tr>
+                   {% endif %}
+               {% endfor %}
+            </table>
+           </td>
+         </tr>
+       </table>
+       <button class="butt" type="submit" name="sub">{% trans "Save" %}</button>
+       <a href="/">{% trans "Cancel" %}</a>
+   </form>
 </div>
 <br>
-
 {% endblock %}
 
 
