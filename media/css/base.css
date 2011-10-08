@@ -95,7 +95,7 @@ h1 {
 #loading{
         position: absolute;
         top: 20%;
-        left: 50%;
+        left: 45%;
         display: none;
 }
 
@@ -105,5 +105,9 @@ h1 {
 }
 
 .datetimeshortcuts{
-    font-size: 14px;
+    font-size: 13px;
+
+}
+#persform{
+    padding-left: 30px;
 }

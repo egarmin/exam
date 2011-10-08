@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
-from personal.models import Person, Contacts
+from personal.models import Person
 import settings
 import commands
 import sys
@@ -80,18 +80,18 @@ class TestContactEdit(HttpTestCase):
                          HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         #Get edited pers
         pers = Person.objects.get(pk=1)
-        cont = Contacts.objects.get(pk=1)
 
         #Compare pers members with test dict fields
+         #Compare pers members with test dict fields
         self.assert_equal(pers.name, TEST_DATA['name'])
         self.assert_equal(pers.surname, TEST_DATA['surname'])
         self.assert_equal(pers.birthday.strftime("%d.%m.%Y"),
                           TEST_DATA['birthday'])
         self.assert_equal(pers.bio, TEST_DATA['bio'])
-        self.assert_equal(cont.email, TEST_DATA['email'])
-        self.assert_equal(cont.jid, TEST_DATA['jid'])
-        self.assert_equal(cont.skype, TEST_DATA['skype'])
-        self.assert_equal(cont.appendix, TEST_DATA['appendix'])
+        self.assert_equal(pers.email, TEST_DATA['email'])
+        self.assert_equal(pers.jid, TEST_DATA['jid'])
+        self.assert_equal(pers.skype, TEST_DATA['skype'])
+        self.assert_equal(pers.appendix, TEST_DATA['appendix'])
 
 
 class TestAuthPage(HttpTestCase):
@@ -143,9 +143,9 @@ class TestAjaxValid(HttpTestCase):
                             'Enter your surname, please.')
         self.assert_equal(errors['pers_errors']['birthday'][0],
                            'Enter a valid date.')
-        self.assert_equal(errors['cont_errors']['email'][0],
+        self.assert_equal(errors['pers_errors']['email'][0],
                             'Enter a valid e-mail address.')
-        self.assert_equal(errors['cont_errors']['jid'][0],
+        self.assert_equal(errors['pers_errors']['jid'][0],
                             'Enter a valid jabber ID.')
 
 
@@ -155,20 +155,12 @@ class TestAdminLink(TestCase):
     def test_admin_link(self):
         # test for object
         pers = Person.objects.get(pk=1)
-        perslist = Person.objects.all()
         pattern = "/admin/{app}/{module}/{obj_pk}/".\
                 format(app=pers._meta.app_label,
                        module=pers._meta.module_name,
                        obj_pk=pers.pk)
         template = Template('{% load owntag %}{% admin_link contact %}')
         res = template.render(Context({'contact': pers}))
-        self.assert_equal(res, pattern)
-        # test for QuerySet
-        pattern = "/admin/{app}/{module}/".\
-                format(app=perslist.model._meta.app_label,
-                       module=perslist.model._meta.module_name)
-        template = Template('{% load owntag %}{% admin_link contact %}')
-        res = template.render(Context({'contact': perslist}))
         self.assert_equal(res, pattern)
 
 
