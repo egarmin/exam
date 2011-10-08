@@ -147,18 +147,10 @@ class TestAdminLink(TestCase):
     def test_admin_link(self):
         # test for object
         pers = Person.objects.get(pk=1)
-        perslist = Person.objects.all()
         pattern = "/admin/{app}/{module}/{obj_pk}/".\
                 format(app=pers._meta.app_label,
                        module=pers._meta.module_name,
                        obj_pk=pers.pk)
         template = Template('{% load owntag %}{% admin_link contact %}')
         res = template.render(Context({'contact': pers}))
-        self.assert_equal(res, pattern)
-        # test for QuerySet
-        pattern = "/admin/{app}/{module}/".\
-                format(app=perslist.model._meta.app_label,
-                       module=perslist.model._meta.module_name)
-        template = Template('{% load owntag %}{% admin_link contact %}')
-        res = template.render(Context({'contact': perslist}))
         self.assert_equal(res, pattern)
