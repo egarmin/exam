@@ -67,3 +67,26 @@ class TestLogModel(DatabaseTestCase):
         self.assert_equal(last.action, 'delete')
         pers_list = Person.objects.filter(pk=last.id_obj)
         self.assert_false(pers_list)
+
+
+class PriorityTest(HttpTestCase):
+    """ Test ordering according priority property
+    """
+    def prior_test(self):
+        out_pk = []
+        for i in range(0, 10):
+            self.client.get('/someurl1/')
+        self.go('/middle/')
+        s = self.show()
+        for i in range(0, 9):
+            self.assert_true(s.find('pk = %s ' % (i+1)) < s.find('pk = %s ' % (i+2)))
+        # set priority field ==>> reverse display order
+        for i in range(1, 11):
+            log = LogRequest.objects.get(pk=i)
+            log.priority = i
+            log.save()
+        self.go('/middle/')
+        s = self.show()
+        for i in range(0, 9):
+            self.assert_true(s.find('pk = %s ' % (i+1)) > s.find('pk = %s ' % (i+2)))
+
