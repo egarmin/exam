@@ -33,10 +33,11 @@ class TestDisplayRequest(HttpTestCase):
             self.find('/url_%s/' % i)
             self.find('var%s = val%s' % (i, i))
 
+            
 class TestLogModel(DatabaseTestCase):
     """  Log changing, creating and deleting of all models
     """
-
+	# create
     def log_model_test(self):
         pers = Person(name='test_name', surname='test_surname')
         pers.save()
@@ -46,7 +47,7 @@ class TestLogModel(DatabaseTestCase):
         self.assert_equal(last.action, 'create')
         name = Person.objects.get(pk=last.id_obj).name
         self.assert_equal(name, 'test_name')
-
+	# change
         pers = Person.objects.get(name='test_name')
         pers.name = 'new_user_name'
         pers.save()
@@ -56,8 +57,7 @@ class TestLogModel(DatabaseTestCase):
         self.assert_equal(last.action, 'change')
         name = Person.objects.get(pk=last.id_obj).name
         self.assert_equal(name, 'new_user_name')
-
-
+	# delete
         pers = Person.objects.get(name='new_user_name')
         pers.name = 'new_user_name'
         pers.delete()
@@ -65,8 +65,5 @@ class TestLogModel(DatabaseTestCase):
         self.assert_equal(last.app_name, 'personal')
         self.assert_equal(last.model_name, 'person')
         self.assert_equal(last.action, 'delete')
-        try:
-            pers = Person.objects.get(pk=last.id_obj)
-        except Person.DoesNotExist:
-            pass
-
+        pers_list = Person.objects.filter(pk=last.id_obj)
+        self.assert_false(pers_list)
