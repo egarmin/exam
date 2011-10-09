@@ -2,15 +2,12 @@
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 from personal.models import Person
 import settings
-import commands
 import sys
-from os import path, unlink
 from StringIO import StringIO
 from django.core.management import call_command
 from django.utils import simplejson as json
 from django.template import Template, Context
 from django.contrib.contenttypes.models import ContentType
-from datetime import date
 
 
 NEW_NAME = 'newperson'
@@ -185,3 +182,5 @@ class TestCountModel(TestCase):
             self.find_in(c.app_label, out_out.getvalue().lower())
             self.find_in(c.app_label, out_err.getvalue().lower())
         self.find_in('error:', out_err.getvalue().lower())
+
+
