@@ -11,13 +11,17 @@
 <h1 align="center">{% trans "The first 10 HTTP requests that are stored by middlware" %}</h1>
 
     <table>
-        <tr><th>{% trans "Registration" %}<br>{% trans "number" %}</th>
-             <th>{% trans "Time of adding" %}</th>
+        <tr>
+             <th>{% trans "Priority" %}</th>
+             <th>{% trans "Key" %}</th>
+             <th>{% trans "Time"%}<br> {% trans "of adding" %}</th>
              <th>{% trans "Common information" %}</th>
-             <th>{% trans "Information about user" %}</th>
+             <th>{% trans "Information" %} <br>{% trans "about user" %}</th>
          </tr>
         {% for req in req_list %}
-            <tr><td align="center">{{ req.pk }}</td>
+            <tr>
+                <td align="center">{{ req.priority }}</td>
+                <td align="center">pk = {{ req.pk }} </td>
                 <td>
                     <p>{{ req.added|date:"d.m.Y" }}<br>
                     {{ req.added|date:"H:i:s" }}</p>

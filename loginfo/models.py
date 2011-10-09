@@ -12,6 +12,7 @@ class LogRequest(models.Model):
     path = models.TextField(verbose_name=_('path'))
     content = models.TextField(verbose_name=_('parameters'))
     user_info = models.TextField(verbose_name=_('user info'))
+    priority = models.PositiveIntegerField(default=0)
 
     def __unicode__(self):
         return "%s: %s" % (self.pk, self.path)
