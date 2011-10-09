@@ -182,5 +182,3 @@ class TestCountModel(TestCase):
             self.find_in(c.app_label, out_out.getvalue().lower())
             self.find_in(c.app_label, out_err.getvalue().lower())
         self.find_in('error:', out_err.getvalue().lower())
-
-
