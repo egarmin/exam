@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-04 02:27+0300\n"
+"POT-Creation-Date: 2011-10-09 21:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,153 +19,236 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: loginfo/models.py:8
+#: loginfo/models.py:11
 msgid "was added"
 msgstr "добавлен"
 
-#: loginfo/models.py:9
+#: loginfo/models.py:12
 msgid "path"
 msgstr "путь"
 
-#: loginfo/models.py:10
+#: loginfo/models.py:13
 msgid "parameters"
 msgstr "параметры"
 
-#: loginfo/models.py:11
+#: loginfo/models.py:14
 msgid "user info"
 msgstr "информация о пользователе"
 
-#: loginfo/templates/display_req.html:6
+#: loginfo/templates/display_req.html:11
 msgid "The first 10 HTTP requests that are stored by middlware"
 msgstr "10 первых HTTP-запросов, сохраненных посредством middleware"
 
-#: loginfo/templates/display_req.html:9
-msgid "Filing"
-msgstr "Номер по"
+#: loginfo/templates/display_req.html:15
+msgid "Priority"
+msgstr "Приоритет"
 
-#: loginfo/templates/display_req.html:9
-msgid "number"
-msgstr "порядку"
+#: loginfo/templates/display_req.html:16
+msgid "Key"
+msgstr "Ключ"
 
-#: loginfo/templates/display_req.html:10
-msgid "Time of adding"
-msgstr "Время записи"
+#: loginfo/templates/display_req.html:17
+msgid "Time"
+msgstr "Время"
 
-#: loginfo/templates/display_req.html:11
+#: loginfo/templates/display_req.html:17
+msgid "of adding"
+msgstr "записи"
+
+#: loginfo/templates/display_req.html:18
 msgid "Common information"
 msgstr "Общая информация"
 
-#: loginfo/templates/display_req.html:12
-msgid "Information about user"
-msgstr "Информация о пользователе"
+#: loginfo/templates/display_req.html:19
+msgid "Information"
+msgstr "Информация"
 
-#: loginfo/templates/display_req.html:23
+#: loginfo/templates/display_req.html:19
+msgid "about user"
+msgstr "о пользователе"
+
+#: loginfo/templates/display_req.html:32
 msgid "No data to display"
 msgstr "Данные для отображения отсутствуют"
 
-#: loginfo/templates/display_req.html:34 personal/templates/edit_pers.html:19
+#: loginfo/templates/display_req.html:42
 msgid "Main page"
 msgstr "Главная страница"
 
 #: loginfo/templates/footer.html:5
-msgid "10 requests"
+msgid "requests"
 msgstr "10 запросов"
 
-#: loginfo/templates/footer.html:6
-msgid "Edit"
-msgstr "Изменить"
+#: personal/forms.py:28
+msgid "Name:"
+msgstr "Имя:"
 
-#: loginfo/templates/footer.html:7
-msgid "Logout"
-msgstr "Выйти"
+#: personal/forms.py:29
+msgid "Enter your name, please."
+msgstr "Пожалуйста, введите Вашу фамилию."
 
-#: personal/forms.py:8 personal/templates/display_pers.html:17
-msgid "Name"
-msgstr "Имя"
+#: personal/forms.py:30
+msgid "Surname:"
+msgstr "Фамилия:"
 
-#: personal/forms.py:9 personal/forms.py:11
-msgid "Enter your surname, please"
+#: personal/forms.py:31
+msgid "Enter your surname, please."
 msgstr "Пожалуйста, введите Вашу фамилию"
 
-#: personal/forms.py:10 personal/templates/display_pers.html:18
-msgid "Surname"
-msgstr "Фамилия"
+#: personal/forms.py:33 personal/templates/display_pers.html:27
+msgid "Date of birth:"
+msgstr "Дата рождения:"
 
-#: personal/forms.py:13 personal/templates/display_pers.html:21
-msgid "Birthday"
-msgstr "День рождения"
+#: personal/forms.py:35
+msgid "Biography:"
+msgstr "Биография:"
 
-#: personal/forms.py:16 personal/templates/display_pers.html:19
-msgid "Biography"
-msgstr "Биография"
+#: personal/forms.py:37
+msgid "Email:"
+msgstr "Эл. почта:"
 
-#: personal/forms.py:17 personal/templates/display_pers.html:23
-msgid "Phone"
-msgstr "Телефон"
+#: personal/forms.py:38
+msgid "Jabber:"
+msgstr ""
 
-#: personal/forms.py:19 personal/templates/display_pers.html:24
-msgid "E-mail"
-msgstr "Эл. почта"
+#: personal/forms.py:39
+msgid "Enter a valid jabber ID."
+msgstr "Введите верный jabber-адрес"
+
+#: personal/forms.py:40
+msgid "Skype:"
+msgstr ""
+
+#: personal/forms.py:41
+msgid "Appendix:"
+msgstr "Дополнительно:"
 
 #: personal/models.py:7
 msgid "name"
-msgstr "Имя"
+msgstr "имя"
 
 #: personal/models.py:8
 msgid "surname"
-msgstr "Фамилия"
+msgstr "фамилия"
 
 #: personal/models.py:9
+msgid "date of birth"
+msgstr "дата рождения"
+
+#: personal/models.py:11
 msgid "biography"
-msgstr "Биография"
+msgstr "биография"
 
-#: personal/models.py:10
-msgid "birthday"
-msgstr "День рождения"
-
-#: personal/models.py:12
-msgid "phone"
-msgstr "телефон"
+#: personal/models.py:13
+msgid "jabber"
+msgstr ""
 
 #: personal/models.py:15
+msgid "skype"
+msgstr ""
+
+#: personal/models.py:17
 msgid "e-mail"
 msgstr "эл. почта"
 
 #: personal/models.py:18
+msgid "appendix"
+msgstr "дополнительно"
+
+#: personal/models.py:21
 msgid "person"
 msgstr "личность"
 
-#: personal/models.py:19
+#: personal/models.py:22
 msgid "people"
 msgstr "персонал"
 
-#: personal/views.py:39
-msgid "Pers info save error. Try later."
-msgstr "Ошибка сохранения данных. Попробуйте позже."
+#: personal/templates/display_pers.html:25
+msgid "Name"
+msgstr "Имя"
 
-#: personal/templates/display_pers.html:7
-msgid "Hello"
-msgstr "Привет"
+#: personal/templates/display_pers.html:26
+msgid "Surname"
+msgstr "Фамилия"
 
-#: personal/templates/display_pers.html:9
-msgid "stranger"
-msgstr "незнакомец"
+#: personal/templates/display_pers.html:28
+msgid "Biography"
+msgstr "Биография"
 
-#: personal/templates/display_pers.html:15 personal/templates/edit_pers.html:6
-msgid "Personal information"
-msgstr "Персональная информация"
+#: personal/templates/display_pers.html:33
+msgid "Contacts"
+msgstr "Контакты"
 
-#: personal/templates/edit_pers.html:11
+#: personal/templates/display_pers.html:34
+msgid "Email"
+msgstr "Эл. почта"
+
+#: personal/templates/display_pers.html:35
+msgid "Jabber"
+msgstr ""
+
+#: personal/templates/display_pers.html:36
+msgid "Skype"
+msgstr ""
+
+#: personal/templates/display_pers.html:37
+msgid "Other contacts"
+msgstr "Дополнительно"
+
+#: personal/templates/edit_pers.html:52
 msgid "Save"
 msgstr "Сохранить"
 
-#: personal/templates/login.html:5
+#: personal/templates/edit_pers.html:53 personal/templates/login.html:27
+msgid "Cancel"
+msgstr "Отмена"
+
+#: personal/templates/login.html:10
 msgid "Authentication"
 msgstr "Аутентификация"
 
-#: personal/templates/login.html:6
+#: personal/templates/login.html:11
 msgid "Enter your login and password, please."
 msgstr "Пожалуйста, введите свой логин и пароль"
+
+#~ msgid "Registration"
+#~ msgstr "Регистрационный"
+
+#~ msgid "number"
+#~ msgstr "номер"
+
+#~ msgid "Filing"
+#~ msgstr "Номер по"
+
+#~ msgid "Edit"
+#~ msgstr "Изменить"
+
+#~ msgid "Logout"
+#~ msgstr "Выйти"
+
+#~ msgid "Birthday"
+#~ msgstr "День рождения"
+
+#~ msgid "Phone"
+#~ msgstr "Телефон"
+
+#~ msgid "birthday"
+#~ msgstr "День рождения"
+
+#~ msgid "phone"
+#~ msgstr "телефон"
+
+#~ msgid "Pers info save error. Try later."
+#~ msgstr "Ошибка сохранения данных. Попробуйте позже."
+
+#~ msgid "Hello"
+#~ msgstr "Привет"
+
+#~ msgid "stranger"
+#~ msgstr "незнакомец"
+
+#~ msgid "Personal information"
+#~ msgstr "Персональная информация"
 
 #~ msgid "secured"
 #~ msgstr "защищенный"
