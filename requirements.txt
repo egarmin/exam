@@ -4,3 +4,4 @@ nose==1.1.2
 tddspry==0.4-beta
 twill==0.9
 wsgiref==0.1.2
+south==0.7.3
