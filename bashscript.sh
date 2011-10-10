@@ -6,7 +6,7 @@ prefix=`date +%F`
 #echo curr = $curr
 #echo old = $HOSTNAME
 #fname=$curr$mypath/$prefix.dat
-fname=/tmp/$prefix.dat
+fname=/var/tmp/$prefix.dat
 #mkdir -p $curr$mypath
 #PATH=${PATH}:$curr
 python manage.py allmodels 2>$fname
