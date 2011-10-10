@@ -28,8 +28,6 @@ color: black;
 background: white;
 }
 
-
-
 h1 {
     font-weight:bold;
     font-size:26px;
@@ -58,8 +56,6 @@ h1 {
     width: 20pc;
     word-wrap:break-word;
 }
-<<<<<<< HEAD
-
 .contact td{
     vertical-align: top;
     font-size: 16px;
@@ -86,5 +82,4 @@ h1 {
     font-weight: bolder;
     background-color: #b0c4de;
 }
-=======
->>>>>>> t1_contact
+
