@@ -187,8 +187,10 @@ class TestCountModel(TestCase):
         self.find_in('error:', out_err.getvalue().lower())
 
     def test_script_file(self):
-        filename = os.getcwd() +'/tmp/exam/'+ \
-                   date.today().strftime('%Y-%m-%d') + '.dat'
+        #filename = os.getcwd() +'/tmp/exam/'+ \
+         #          date.today().strftime('%Y-%m-%d') + '.dat'
+        filename = date.today().strftime('%Y-%m-%d') + '.dat'
+        filename = '/tmp/' + filename
         try:
             os.unlink(filename)
         except OSError:
