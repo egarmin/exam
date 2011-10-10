@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% block title %}
+    42-cc-TEST: edit form
+{% endblock %}
+
+{% block extrahead %}
+      {{ person_form.media }}
+{% endblock %}
+
 {% block content %}
+
+<script src="{{ MEDIA_URL }}js/jquery-1.5.1.min.js"></script>
+<script src="{{ MEDIA_URL }}js/jquery.form.js"></script>
+<script src="{{ MEDIA_URL }}js/myform.js"></script>
+
+
+    <img id="loading" src="{{ MEDIA_URL }}img/image_loader.gif">
+
 
 <div class="contact">
    <form  id="persform" action="" name="update" method="POST">{% csrf_token %}
@@ -11,11 +27,9 @@
                {% for field in person_form %}
                    {% if forloop.counter0 < index %}
                    <tr>
-
                   <th>{{ field.label_tag }}</th><td>{{ field }}
                        {{ field.errors }}
                   </td>
-
                    </tr>
                    {% endif %}
                {% endfor %}
@@ -26,8 +40,10 @@
                {% for field in person_form %}
                    {% if forloop.counter > index %}
                    <tr>
-                  <td>{{ field.errors }}</td>
-                  <th>{{ field.label_tag }}</th><td>{{ field }}</td>
+                  <td></td>
+                  <th>{{ field.label_tag }}</th><td>{{ field }}
+                      {{ field.errors }}
+                   </td>
                    </tr>
                    {% endif %}
                {% endfor %}

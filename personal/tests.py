@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import settings
+from django.utils import simplejson as json
 
 from tddspry.django import DatabaseTestCase, HttpTestCase
 
@@ -69,9 +70,12 @@ class TestContactEdit(HttpTestCase):
         self.helper('create_user', 'testuser', 'password')
         self.login('testuser', 'password')
         #Send post request to edit pers
-        self.client.post('/edit/', TEST_DATA)
+        self.client.post('/edit/', TEST_DATA,
+                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         #Get edited pers
         pers = Person.objects.get(pk=1)
+
+        #Compare pers members with test dict fields
          #Compare pers members with test dict fields
         self.assert_equal(pers.name, TEST_DATA['name'])
         self.assert_equal(pers.surname, TEST_DATA['surname'])
@@ -96,3 +100,29 @@ class TestAuthPage(HttpTestCase):
         self.login('testuser', 'password')
         self.logout()
         self.url('/')
+
+
+class TestAjaxValid(HttpTestCase):
+
+    def ajax_messages_test(self):
+        FAIL_TEST_DATA = {'name': u'',
+                     'surname': u'',
+                     'birthday': u'abcdef',
+                     'email': u'fail_email',
+                     'jid': u'123123'}
+        self.helper('create_user', 'testuser', 'password')
+        self.login('testuser', 'password')
+
+        response = self.client.post('/edit/', FAIL_TEST_DATA,
+                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+        errors = json.loads(response.content)
+        self.assert_equal(errors['pers_errors']['name'][0],
+                            'Enter your name, please.')
+        self.assert_equal(errors['pers_errors']['surname'][0],
+                            'Enter your surname, please.')
+        self.assert_equal(errors['pers_errors']['birthday'][0],
+                           'Enter a valid date.')
+        self.assert_equal(errors['pers_errors']['email'][0],
+                            'Enter a valid e-mail address.')
+        self.assert_equal(errors['pers_errors']['jid'][0],
+                            'Enter a valid jabber ID.')

@@ -14,11 +14,12 @@ h1 {
 
 /********** display person **********************/
 .contact{
-    padding-left: 20px;
+    padding-left: 40px;
+    width: 100%
 }
 .contact div{
     font-size: 16px;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 .contact1 p{
     padding-bottom: 11px;
@@ -35,6 +36,9 @@ h1 {
 }
 .contact td{
     vertical-align: top;
+}
+#etable{
+    padding-left: 0;
 }
 #etable td {
     padding-bottom: 15px;
@@ -87,9 +91,20 @@ h1 {
 
 /*********** Edit Form*****************/
 
+#loading{
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        display: none;
+}
+
 .errorlist{
-    font-size: 13px;
+    font-size: 12px;
     color: red;
+}
+
+.datetimeshortcuts{
+    font-size: 13px;
 
 }
 #persform{
