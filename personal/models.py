@@ -9,12 +9,10 @@ class Person(models.Model):
     birthday = models.DateField(verbose_name=_('date of birth'),
                                 blank=True, null=True)
     bio = models.TextField(verbose_name=_('biography'), blank=True)
-    jid = models.CharField(blank=True, max_length=55,
-                           verbose_name=_('jabber'))
+    jid = models.EmailField(blank=True, verbose_name=_('jabber'))
     skype = models.CharField(max_length=55, blank=True,
                              verbose_name=_('skype'))
-    email = models.CharField(blank=True, max_length=45,
-                             verbose_name=_('e-mail'))
+    email = models.EmailField(blank=True, verbose_name=_('e-mail'))
     appendix = models.TextField(verbose_name=_('appendix'), blank=True)
 
     class Meta:
