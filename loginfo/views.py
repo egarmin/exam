@@ -5,8 +5,5 @@ from loginfo.models import LogRequest
 
 @render_to('display_req.html')
 def display_requests(request):
-    try:
-        req_list = LogRequest.objects.filter(pk__lt=11)
-    except:
-        req_list = None
+    req_list = LogRequest.objects.all().order_by('added')[:10]
     return {'req_list': req_list}

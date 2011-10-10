@@ -14,15 +14,11 @@ class MiddlewareRequest(HttpTestCase):
         self.client.get('/someurl1/')
         self.client.get('/someurl2/?somevariable1=somevalue1& \
                                     somevariable2=somevalue2')
-        try:
-            log = LogRequest.objects.order_by('-added')[0]
-        except:
-            self.assert_true(False)
-        else:
-            content = log.content
-            self.assert_true('somevariable1 = somevalue1' in content)
-            self.assert_true('somevariable2 = somevalue2' in content)
-            self.assert_equal(log.path, '/someurl2/')
+        log = LogRequest.objects.order_by('-added')[0]
+        content = log.content
+        self.assert_true('somevariable1 = somevalue1' in content)
+        self.assert_true('somevariable2 = somevalue2' in content)
+        self.assert_equal(log.path, '/someurl2/')
 
 
 class TestDisplayRequest(HttpTestCase):
