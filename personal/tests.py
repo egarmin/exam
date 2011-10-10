@@ -3,12 +3,14 @@ from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 from personal.models import Person
 import settings
 import sys
+import commands
+from datetime import date
 from StringIO import StringIO
 from django.core.management import call_command
 from django.utils import simplejson as json
 from django.template import Template, Context
 from django.contrib.contenttypes.models import ContentType
-
+from os import unlink
 
 NEW_NAME = 'newperson'
 TEST_NAME = 'testperson'

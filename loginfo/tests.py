@@ -33,11 +33,11 @@ class TestDisplayRequest(HttpTestCase):
             self.find('/url_%s/' % i)
             self.find('var%s = val%s' % (i, i))
 
-            
+
 class TestLogModel(DatabaseTestCase):
     """  Log changing, creating and deleting of all models
     """
-	# create
+        # create
     def log_model_test(self):
         pers = Person(name='test_name', surname='test_surname')
         pers.save()
@@ -47,7 +47,7 @@ class TestLogModel(DatabaseTestCase):
         self.assert_equal(last.action, 'create')
         name = Person.objects.get(pk=last.id_obj).name
         self.assert_equal(name, 'test_name')
-	# change
+        # change
         pers = Person.objects.get(name='test_name')
         pers.name = 'new_user_name'
         pers.save()
@@ -57,7 +57,7 @@ class TestLogModel(DatabaseTestCase):
         self.assert_equal(last.action, 'change')
         name = Person.objects.get(pk=last.id_obj).name
         self.assert_equal(name, 'new_user_name')
-	# delete
+        # delete
         pers = Person.objects.get(name='new_user_name')
         pers.name = 'new_user_name'
         pers.delete()
@@ -73,13 +73,13 @@ class PriorityTest(HttpTestCase):
     """ Test ordering according priority property
     """
     def prior_test(self):
-        out_pk = []
         for i in range(0, 10):
             self.client.get('/someurl1/')
         self.go('/middle/')
         s = self.show()
         for i in range(0, 9):
-            self.assert_true(s.find('pk = %s ' % (i+1)) < s.find('pk = %s ' % (i+2)))
+            self.assert_true(s.find('pk = %s ' % (i + 1)) <
+                             s.find('pk = %s ' % (i + 2)))
         # set priority field ==>> reverse display order
         for i in range(1, 11):
             log = LogRequest.objects.get(pk=i)
@@ -88,5 +88,5 @@ class PriorityTest(HttpTestCase):
         self.go('/middle/')
         s = self.show()
         for i in range(0, 9):
-            self.assert_true(s.find('pk = %s ' % (i+1)) > s.find('pk = %s ' % (i+2)))
-
+            self.assert_true(s.find('pk = %s ' % (i + 1)) >
+                             s.find('pk = %s ' % (i + 2)))

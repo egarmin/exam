@@ -45,7 +45,7 @@ def my_handler(sender, **kwargs):
         id_obj = 'absent'
     rec = LogModel(app_name=obj_instance.app_label,
                    model_name=obj_instance.model,
-                   id_obj = id_obj,
+                   id_obj=id_obj,
                    action=action)
     try:
         rec.save()

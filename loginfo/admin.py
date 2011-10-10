@@ -5,7 +5,7 @@ from loginfo.models import LogModel, LogRequest
 
 class LogModelsAdmin(admin.ModelAdmin):
     list_display = ['pk', 'added', 'app_name', 'model_name',
-		    'id_obj', 'action']
+                    'id_obj', 'action']
     list_display_links = ['pk']
     list_per_page = 50
     search_fields = ['model_name', 'action']
@@ -13,13 +13,13 @@ class LogModelsAdmin(admin.ModelAdmin):
 
 
 class LogRequestAdmin(admin.ModelAdmin):
-    list_display = [ 'priority', 'pk', 'added', 'path']
+    list_display = ['priority', 'pk', 'added', 'path']
     list_display_links = ['pk']
     list_editable = ['priority']
     list_per_page = 50
     search_fields = ['path']
     ordering = ['added']
 
-    
+
 admin.site.register(LogModel, LogModelsAdmin)
 admin.site.register(LogRequest, LogRequestAdmin)
