@@ -37,7 +37,7 @@ class TestDisplayRequest(HttpTestCase):
 class TestLogModel(DatabaseTestCase):
     """  Log changing, creating and deleting of all models
     """
-        # create
+    # create
     def log_model_test(self):
         pers = Person(name='test_name', surname='test_surname')
         pers.save()
