@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from loginfo.views import display_requests
 
 
-class MiddlewarePerson(HttpTestCase):
+class MiddlewareRequest(HttpTestCase):
     '''  middleware ReqLog test '''
 
     def request_log_test(self):

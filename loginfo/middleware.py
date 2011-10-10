@@ -16,13 +16,15 @@ def make_text(inp_dict):
 class MyMiddle:
 
     def process_request(self, request):
+        if 'admin' in request.path:
+            return
         new_rec = LogRequest()
         req_text = '\n*******COMMON INFO*********'
         req_text += '\nmethod = %s' % request.method
         req_text += '\nsecure = \'%s\'' % str(request.is_secure())
         req_text += '\najax = \'%s\'' % str(request.is_ajax())
         req_text += '\npath_info = \'%s\'' % request.path_info
-        req_text += '\nraw_post_data = \'%s\'' % request.raw_post_data
+        #req_text += '\nraw_post_data = \'%s\'' % request.raw_post_data
         req_text += '\nsession_key = %s' % request.session.session_key
         req_text += '\n******* META section *********'
         req_text += make_text(request.META)
@@ -33,9 +35,9 @@ class MyMiddle:
         req_text += '\n******* GET section *********'
         req_text += make_text(request.GET)
         req_text += '\n******* REQUEST section *********'
-        req_text += make_text(request.GET)
+        req_text += make_text(request.REQUEST)
         req_text += '\n******* FILES section *********'
-        req_text += make_text(request.GET)
+        req_text += make_text(request.FILES)
         if request.user.username is '':
             user_text = '\nusername = %s' % 'AnonymousUser'
         else:

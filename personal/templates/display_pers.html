@@ -1,11 +1,14 @@
 {% extends "base.html" %}
-{% block content %}
 {% load i18n %}
+
+{% block title %}
+    <h1>42 Coffee Cups Test Assignment</h1>
+{% endblock %}
+
+{% block content %}
 <div class="contact">
-<h1>42 Coffee Cups Test Assignment</h1>
-<table>
 <tr><td>
-<div class="contact1">
+  <div class="contact1">
     <p>{% trans "Name" %}: {{ pers.name }}</p>
     <p>{% trans "Surname" %}: {{ pers.surname }}</p>
     <p>{% trans "Date of birth" %}: {{ pers.birthday|date:"d.m.Y" }}</p>
@@ -27,5 +30,5 @@
  </td></tr>
 </table>
 </div>
-   
+
 {% endblock %}
