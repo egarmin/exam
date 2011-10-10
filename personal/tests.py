@@ -190,7 +190,7 @@ class TestCountModel(TestCase):
         #filename = os.getcwd() +'/tmp/exam/'+ \
          #          date.today().strftime('%Y-%m-%d') + '.dat'
         filename = date.today().strftime('%Y-%m-%d') + '.dat'
-        filename = '/tmp/' + filename
+        filename = '/var/tmp/' + filename
         try:
             os.unlink(filename)
         except OSError:
