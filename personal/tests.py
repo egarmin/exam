@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-from tddspry.django import DatabaseTestCase, HttpTestCase
-from personal.models import Person
 import settings
+
+from tddspry.django import DatabaseTestCase, HttpTestCase
+
+from personal.models import Person
 
 
 NEW_NAME = 'newperson'

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from personal.models import Person
-from personal.forms import PersonForm
-from personal.decorators import render_to
-from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+
+from personal.decorators import render_to
+from personal.forms import PersonForm
+from personal.models import Person
 
 
 @render_to('display_pers.html')
