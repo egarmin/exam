@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import commands
+from datetime import date
+from os import unlink
 import settings
 import sys
 from StringIO import StringIO
@@ -185,7 +188,7 @@ class TestCountModel(TestCase):
         self.find_in('error:', out_err.getvalue().lower())
 
     def test_script_file(self):
-        filename = '/tmp/' + date.today().strftime('%Y-%m-%d') + '.dat'
+        filename = date.today().strftime('%Y-%m-%d') + '.dat'
         try:
             unlink(filename)
         except OSError:
