@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
-from tddspry.django import DatabaseTestCase, HttpTestCase
-from personal.models import Person
 import settings
 from django.utils import simplejson as json
+
+from tddspry.django import DatabaseTestCase, HttpTestCase
+
+from personal.models import Person
+
 
 NEW_NAME = 'newperson'
 TEST_NAME = 'testperson'
@@ -100,7 +103,7 @@ class TestAuthPage(HttpTestCase):
 
 
 class TestAjaxValid(HttpTestCase):
-    
+
     def ajax_messages_test(self):
         FAIL_TEST_DATA = {'name': u'',
                      'surname': u'',
@@ -123,5 +126,3 @@ class TestAjaxValid(HttpTestCase):
                             'Enter a valid e-mail address.')
         self.assert_equal(errors['pers_errors']['jid'][0],
                             'Enter a valid jabber ID.')
-
-

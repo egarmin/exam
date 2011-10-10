@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
+import settings
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
 
 
 class CalendarWidget(forms.DateInput):
@@ -22,7 +22,7 @@ class CalendarWidget(forms.DateInput):
         super(CalendarWidget, self).__init__(attrs={'class': 'vDateField',
                                                     'size': '12'})
 
-        
+
 class PersonForm(forms.Form):
     name = forms.CharField(max_length=50, label=_('Name:'),
                  error_messages={'required': _("Enter your name, please.")})
