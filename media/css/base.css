@@ -29,17 +29,36 @@ background: white;
 }
 
 
+
 h1 {
     font-weight:bold;
-    font-size:24px;
-    padding:50px 0 20px 0;
+    font-size:26px;
+    font-family: Georgia,serif;
+    padding:50px 0 40px 50px;
 }
 
+.contact div{
+    float: left;
+    font-size: 16px;
+    padding-left: 20px;
+}
+.contact{
+    padding-left: 20px;
+}
+
+.contact p{
+    padding-bottom: 11px;
+}
+.contact1 p{
+    padding-bottom: 20px;
+}
 
 .contact textarea{
-    height:5pc;
+    height:6pc;
+    width: 20pc;
     word-wrap:break-word;
 }
+<<<<<<< HEAD
 
 .contact td{
     vertical-align: top;
@@ -67,3 +86,5 @@ h1 {
     font-weight: bolder;
     background-color: #b0c4de;
 }
+=======
+>>>>>>> t1_contact
