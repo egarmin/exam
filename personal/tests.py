@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-from tddspry.django import DatabaseTestCase, HttpTestCase
-from personal.models import Person
 import settings
+
+from tddspry.django import DatabaseTestCase, HttpTestCase
+
+from personal.models import Person
 
 
 NEW_NAME = 'newperson'
@@ -47,3 +49,50 @@ class TestContextProcessor(HttpTestCase):
         response = self.client.get('/')
         self.assert_true('settings' in response.context[0],
                          'No django.settings in context.')
+
+
+class TestContactEdit(HttpTestCase):
+    """ Test contact edit form work """
+
+    def contact_edit_test(self):
+        #Prepare test data
+        TEST_DATA = {'name': 'test_name',
+                     'surname': 'test_surname',
+                     'birthday': '01.01.2010',
+                     'bio': 'test_bio',
+                     'email': 'test@test.com',
+                     'jid': 'test@jabb-jabb.puk',
+                     'appendix': 'pizza',
+                     'skype': 'my.name.is'
+                     }
+        #Login testuser
+        self.helper('create_user', 'testuser', 'password')
+        self.login('testuser', 'password')
+        #Send post request to edit pers
+        self.client.post('/edit/', TEST_DATA)
+        #Get edited pers
+        pers = Person.objects.get(pk=1)
+         #Compare pers members with test dict fields
+        self.assert_equal(pers.name, TEST_DATA['name'])
+        self.assert_equal(pers.surname, TEST_DATA['surname'])
+        self.assert_equal(pers.birthday.strftime("%d.%m.%Y"),
+                          TEST_DATA['birthday'])
+        self.assert_equal(pers.bio, TEST_DATA['bio'])
+        self.assert_equal(pers.email, TEST_DATA['email'])
+        self.assert_equal(pers.jid, TEST_DATA['jid'])
+        self.assert_equal(pers.skype, TEST_DATA['skype'])
+        self.assert_equal(pers.appendix, TEST_DATA['appendix'])
+
+
+class TestAuthPage(HttpTestCase):
+
+    def test_login(self):
+        self.helper('create_user', 'username', 'password')
+        self.login('username', 'password')
+        self.url(settings.LOGIN_REDIRECT_URL)
+
+    def test_logout(self):
+        self.helper('create_user', 'testuser', 'password')
+        self.login('testuser', 'password')
+        self.logout()
+        self.url('/')

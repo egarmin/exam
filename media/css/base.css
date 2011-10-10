@@ -1,29 +1,6 @@
 @charset "utf-8";
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-margin: 0;
-padding: 0;
-border: 0;
-outline: 0;
-font-weight: inherit;
-font-style: inherit;
-font-size: 100%;
-font-family: inherit;
-vertical-align: baseline;
-}
-/* remember to define focus styles! */
-:focus {
-outline: 0;
-}
 body {
-line-height: 1;
 color: black;
 background: white;
 }
@@ -32,8 +9,10 @@ h1 {
     font-weight:bold;
     font-size:26px;
     font-family: Georgia,serif;
-    padding:50px 0 40px 50px;
+    padding:30px 0 10px 50px;
 }
+
+/********** display person **********************/
 .contact{
     padding-left: 20px;
 }
@@ -41,22 +20,31 @@ h1 {
     font-size: 16px;
     padding-left: 20px;
 }
-.contact p{
+.contact1 p{
     padding-bottom: 11px;
 }
-.contact1 p{
-    padding-bottom: 20px;
-}
 .contact textarea{
+    font-size: 14px;
     height:6pc;
     width: 20pc;
     word-wrap:break-word;
 }
 
+.contact th{
+    text-align: right;
+}
 .contact td{
     vertical-align: top;
-    font-size: 16px;
-    }
+}
+#etable td {
+    padding-bottom: 15px;
+}
+#etable input, textarea{
+    border-style: none;
+    background-color: #e6e6fa;
+}
+
+/************* display requests ***************************/
 .middleware textarea{
     height: 10pc;
     width: 400px;
@@ -78,7 +66,32 @@ h1 {
     background-color: #b0c4de;
 }
 
+
+/********** footer ************/
 .footer{
-    padding: 20px 50px 50px 40px;
+    padding: 0 50px 30px 50px;
 }
 
+/************ links on the top *********************/
+
+.toplinks{
+    position: relative;
+    top: -60px;
+    left: 600px;
+}
+
+.auth{
+    padding-left: 40px;
+    padding-bottom: 20px;
+}
+
+/*********** Edit Form*****************/
+
+.errorlist{
+    font-size: 13px;
+    color: red;
+
+}
+#persform{
+    padding-left: 30px;
+}
