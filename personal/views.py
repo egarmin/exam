@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-from personal.models import Person
-from personal.forms import PersonForm
-from personal.decorators import render_to
-from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import simplejson as json
-from django.template import RequestContext
-from django.shortcuts import render_to_response
+
+from personal.decorators import render_to
+from personal.forms import PersonForm
+from personal.models import Person
 
 
 @render_to('display_pers.html')
@@ -19,6 +18,7 @@ def display_person(request):
 
 @render_to('edit_pers.html')
 @login_required
+@render_to('edit_pers.html')
 def edit_person(request):
     index = len(PersonForm.base_fields.keyOrder) / 2
     try:
@@ -27,7 +27,7 @@ def edit_person(request):
         return HttpResponseRedirect('/')
     if request.method == 'POST':
         p_form = PersonForm(instance=pers, data=request.POST)
-        if p_form.is_valid():  # forms are correct
+        if p_form.is_valid(): # forms are correct
             p_form.save()
             out = {'status': 'ok'}
         else:
