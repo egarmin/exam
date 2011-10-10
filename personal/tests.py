@@ -5,8 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.management import call_command
 from django.template import Template, Context
 from django.utils import simplejson as json
-
-from os import unlink
+import os
 import settings
 from StringIO import StringIO
 import sys
@@ -188,9 +187,10 @@ class TestCountModel(TestCase):
         self.find_in('error:', out_err.getvalue().lower())
 
     def test_script_file(self):
-        filename = date.today().strftime('%Y-%m-%d') + '.dat'
+        filename = os.getcwd() +'/tmp/exam/'+ \
+                   date.today().strftime('%Y-%m-%d') + '.dat'
         try:
-            unlink(filename)
+            os.unlink(filename)
         except OSError:
             pass
         commands.getoutput('bashscript.sh')
