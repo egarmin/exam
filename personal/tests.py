@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 import commands
 from datetime import date
+from django.contrib.contenttypes.models import ContentType
+from django.core.management import call_command
+from django.template import Template, Context
+from django.utils import simplejson as json
 from os import unlink
 import settings
-import sys
 from StringIO import StringIO
-from django.core.management import call_command
-from django.utils import simplejson as json
-from django.template import Template, Context
-from django.contrib.contenttypes.models import ContentType
-
+import sys
 
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 
