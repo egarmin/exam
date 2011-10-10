@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
 import settings
+import commands
+import sys
+from os import path, unlink
+from StringIO import StringIO
+from django.core.management import call_command
 from django.utils import simplejson as json
 from django.template import Template, Context
+from django.contrib.contenttypes.models import ContentType
+from datetime import date
+
 
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 
@@ -155,3 +163,40 @@ class TestAdminLink(TestCase):
         template = Template('{% load owntag %}{% admin_link contact %}')
         res = template.render(Context({'contact': pers}))
         self.assert_equal(res, pattern)
+
+
+class TestCountModel(TestCase):
+    """  Count model, dat-file
+    """
+
+    def test_count(self):
+        ct = ContentType.objects.all()
+        old_out = sys.stdout
+        old_err = sys.stderr
+        out_out = StringIO()
+        out_err = StringIO()
+        sys.stdout = out_out
+        sys.stderr = out_err
+        call_command('allmodels')
+        sys.stdout = old_out
+        sys.stderr = old_err
+        for c in ct:
+            self.find_in(c.model, out_out.getvalue().lower())
+            self.find_in(c.model, out_err.getvalue().lower())
+            self.find_in(c.app_label, out_out.getvalue().lower())
+            self.find_in(c.app_label, out_err.getvalue().lower())
+        self.find_in('error:', out_err.getvalue().lower())
+
+    def test_script_file(self):
+        filename = '/tmp/' + date.today().strftime('%Y-%m-%d') + '.dat'
+        try:
+            unlink(filename)
+        except OSError:
+            pass
+        commands.getoutput('bashscript.sh')
+        out = open(filename).read()
+        ct = ContentType.objects.all()
+        for c in ct:
+            self.find_in(c.model, out.lower())
+            self.find_in(c.app_label, out.lower())
+        self.find_in('error:', out)
