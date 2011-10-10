@@ -38,3 +38,12 @@ class TestDisplayPerson(HttpTestCase):
         self.find('Jabber')
         self.find('Skype')
         self.find('Email')
+
+
+class TestContextProcessor(HttpTestCase):
+    ''' Test adding SETTINGS to context '''
+
+    def context_test(self):
+        response = self.client.get('/')
+        self.assert_true('settings' in response.context[0],
+                         'No django.settings in context.')
