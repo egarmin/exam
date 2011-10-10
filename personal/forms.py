@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from django import forms
-import settings
 from django.utils.translation import ugettext_lazy as _
+import settings
+
+from personal.models import Person
 
 
 class CalendarWidget(forms.DateInput):
@@ -23,19 +25,25 @@ class CalendarWidget(forms.DateInput):
                                                     'size': '12'})
 
 
-class PersonForm(forms.Form):
-    name = forms.CharField(max_length=50, label=_('Name:'),
-                 error_messages={'required': _("Enter your name, please.")})
-    surname = forms.CharField(max_length=50, label=_('Surname:'),
-                 error_messages={'required': _("Enter your surname, please.")})
+
+class PersonForm(forms.ModelForm):
+
     birthday = forms.DateField(input_formats=["%d.%m.%Y", "%Y-%m-%d"],
-                               label=_("Birthday"), required=False,
+                               label=_("Date of birth"), required=False,
                                widget=CalendarWidget)
     bio = forms.CharField(label=_('Biography:'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
-    email = forms.EmailField(max_length=50, label=_("Email:"), required=False)
-    jid = forms.EmailField(max_length=50, label=_('Jabber:'), required=False,
-                  error_messages={'invalid': _("Enter a valid jabber ID.")})
-    skype = forms.CharField(max_length=13, label=_('Skype:'), required=False)
     appendix = forms.CharField(label=_('Appendix:'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
+
+    def __init__(self, *args, **kwargs):
+        super(PersonForm, self).__init__(*args, **kwargs)
+        rev = []
+        index = len(self.fields.keyOrder) / 2
+        order = self.fields.keyOrder
+        rev = order[index:] + order[:index]
+        rev.reverse()
+        self.fields.keyOrder = rev
+
+    class Meta:
+        model = Person

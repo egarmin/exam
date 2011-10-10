@@ -5,7 +5,6 @@ $(document).ready(function() {
     var options = {
         beforeSubmit:  showRequest,
         success:       showResponse,
-        url:     '/edit/',
         type:      'post',
         dataType:  'json'
     };
@@ -19,13 +18,14 @@ function showRequest(formData, jqForm, options) {
     $('#loading').show();
     return true;
 }
+
 function showResponse(data, statusText, xhr, $form)  {
     $('#loading').hide();
     $('a').unbind('click');
     $('input, .butt, textarea').attr('disabled', '');
     $('.errorlist').remove();
 
-    if(data.status != 'ok') { //validation test
+    if(data.status == 'fail') { //validation test
         for( k in data.pers_errors){
             out = '<span class="errorlist"><br>';
            for(i in data.pers_errors[k]){
