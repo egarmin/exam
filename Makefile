@@ -10,6 +10,7 @@ install:
 test:
 
 	@echo Test in progress...
+	cd /home/dmitry/buildbot/slave/full/build
 	@chmod +rx bashscript.sh
 	@bashscript.sh
 	@django-nosetests.py -v -exe.
