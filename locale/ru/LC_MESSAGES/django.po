@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-09 21:53+0300\n"
+"POT-Creation-Date: 2011-10-11 22:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,18 @@ msgstr "параметры"
 #: loginfo/models.py:14
 msgid "user info"
 msgstr "информация о пользователе"
+
+#: loginfo/models.py:45
+msgid "absent"
+msgstr "нет"
+
+#: loginfo/models.py:53
+msgid "The signal from"
+msgstr "Сигнал от"
+
+#: loginfo/models.py:53
+msgid "was not saved."
+msgstr "не сохранен"
 
 #: loginfo/templates/display_req.html:11
 msgid "The first 10 HTTP requests that are stored by middlware"
@@ -75,53 +87,10 @@ msgstr "Данные для отображения отсутствуют"
 msgid "Main page"
 msgstr "Главная страница"
 
-#: loginfo/templates/footer.html:5
-msgid "requests"
-msgstr "10 запросов"
-
-#: personal/forms.py:28
-msgid "Name:"
-msgstr "Имя:"
-
-#: personal/forms.py:29
-msgid "Enter your name, please."
-msgstr "Пожалуйста, введите Вашу фамилию."
-
-#: personal/forms.py:30
-msgid "Surname:"
-msgstr "Фамилия:"
-
-#: personal/forms.py:31
-msgid "Enter your surname, please."
-msgstr "Пожалуйста, введите Вашу фамилию"
-
-#: personal/forms.py:33 personal/templates/display_pers.html:27
-msgid "Date of birth:"
+#: personal/forms.py:40 personal/templates/display_pers.html:27
+#, fuzzy
+msgid "Date of birth"
 msgstr "Дата рождения:"
-
-#: personal/forms.py:35
-msgid "Biography:"
-msgstr "Биография:"
-
-#: personal/forms.py:37
-msgid "Email:"
-msgstr "Эл. почта:"
-
-#: personal/forms.py:38
-msgid "Jabber:"
-msgstr ""
-
-#: personal/forms.py:39
-msgid "Enter a valid jabber ID."
-msgstr "Введите верный jabber-адрес"
-
-#: personal/forms.py:40
-msgid "Skype:"
-msgstr ""
-
-#: personal/forms.py:41
-msgid "Appendix:"
-msgstr "Дополнительно:"
 
 #: personal/models.py:7
 msgid "name"
@@ -139,27 +108,27 @@ msgstr "дата рождения"
 msgid "biography"
 msgstr "биография"
 
-#: personal/models.py:13
+#: personal/models.py:12
 msgid "jabber"
 msgstr ""
 
-#: personal/models.py:15
+#: personal/models.py:14
 msgid "skype"
 msgstr ""
 
-#: personal/models.py:17
+#: personal/models.py:15
 msgid "e-mail"
 msgstr "эл. почта"
 
-#: personal/models.py:18
+#: personal/models.py:16
 msgid "appendix"
 msgstr "дополнительно"
 
-#: personal/models.py:21
+#: personal/models.py:19
 msgid "person"
 msgstr "личность"
 
-#: personal/models.py:22
+#: personal/models.py:20
 msgid "people"
 msgstr "персонал"
 
@@ -203,6 +172,11 @@ msgstr "Сохранить"
 msgid "Cancel"
 msgstr "Отмена"
 
+#: personal/templates/footer.html:6
+#, fuzzy
+msgid "10 requests"
+msgstr "10 запросов"
+
 #: personal/templates/login.html:10
 msgid "Authentication"
 msgstr "Аутентификация"
@@ -210,6 +184,30 @@ msgstr "Аутентификация"
 #: personal/templates/login.html:11
 msgid "Enter your login and password, please."
 msgstr "Пожалуйста, введите свой логин и пароль"
+
+#~ msgid "Name:"
+#~ msgstr "Имя:"
+
+#~ msgid "Enter your name, please."
+#~ msgstr "Пожалуйста, введите Вашу фамилию."
+
+#~ msgid "Surname:"
+#~ msgstr "Фамилия:"
+
+#~ msgid "Enter your surname, please."
+#~ msgstr "Пожалуйста, введите Вашу фамилию"
+
+#~ msgid "Biography:"
+#~ msgstr "Биография:"
+
+#~ msgid "Email:"
+#~ msgstr "Эл. почта:"
+
+#~ msgid "Enter a valid jabber ID."
+#~ msgstr "Введите верный jabber-адрес"
+
+#~ msgid "Appendix:"
+#~ msgstr "Дополнительно:"
 
 #~ msgid "Registration"
 #~ msgstr "Регистрационный"
