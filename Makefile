@@ -10,4 +10,6 @@ install:
 test:
 
 	@echo Test in progress...
+	@chmod +rx bashscript.sh
+	@bashscript.sh
 	@django-nosetests.py -v -exe.

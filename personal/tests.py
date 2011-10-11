@@ -190,15 +190,14 @@ class TestCountModel(TestCase):
         #filename = os.getcwd() +'/tmp/exam/'+ \
          #          date.today().strftime('%Y-%m-%d') + '.dat'
         filename = date.today().strftime('%Y-%m-%d') + '.dat'
-        filename = '/var/tmp/' + filename
-        try:
-            os.unlink(filename)
-        except OSError:
-            pass
-        pr = commands.getoutput('chmod +rx bashscript.sh')
-        print pr
-        pr = commands.getoutput('bashscript.sh')
-        print pr
+        #filename = '/var/tmp/' + filename
+        #try:
+        #    os.unlink(filename)
+        #except OSError:
+        #    pass
+        #commands.getoutput('cd /home/dmitry/buildbot/slave/full/build')
+        #commands.getoutput('chmod +rx bashscript.sh')
+        #commands.getoutput('bashscript.sh')
         out = open(filename).read()
         ct = ContentType.objects.all()
         for c in ct:
