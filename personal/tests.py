@@ -8,6 +8,7 @@ from django.utils import simplejson as json
 import os
 import settings
 from StringIO import StringIO
+import subprocess
 import sys
 
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
@@ -187,20 +188,15 @@ class TestCountModel(TestCase):
         self.find_in('error:', out_err.getvalue().lower())
 
     def test_script_file(self):
-        #filename = os.getcwd() +'/tmp/exam/'+ \
-         #          date.today().strftime('%Y-%m-%d') + '.dat'
         filename = date.today().strftime('%Y-%m-%d') + '.dat'
-        #filename = '/var/tmp/' + filename
-        #try:
-        #    os.unlink(filename)
-        #except OSError:
-        #    pass
-        #commands.getoutput('cd /home/dmitry/buildbot/slave/full/build')
-        #commands.getoutput('chmod +rx bashscript.sh')
-        #commands.getoutput('bashscript.sh')
+        try:
+            os.unlink(filename)
+        except OSError:
+            pass
+        subprocess.call('bashscript.sh', stdout=subprocess.PIPE)
         out = open(filename).read()
         ct = ContentType.objects.all()
         for c in ct:
             self.find_in(c.model, out.lower())
             self.find_in(c.app_label, out.lower())
-        self.find_in('error:', out)
+        self.find_in('ERROR:', out)
