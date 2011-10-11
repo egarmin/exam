@@ -16,4 +16,5 @@ class Command(BaseCommand):
             model_name = str(model).split('\'')[1]
             self.stdout.write(('%s has %s object(s)\n' %
                                (model_name, n)).lower())
-            self.stderr.write('error: %s has %s object(s)\n' % (model_name, n))
+            self.stderr.write(('error: %s has %s object(s)\n' %
+                               (model_name, n)).lower())
