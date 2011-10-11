@@ -82,7 +82,6 @@ class TestContactEdit(HttpTestCase):
                          HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         #Get edited pers
         pers = Person.objects.get(pk=1)
-
         #Compare pers members with test dict fields
         self.assert_equal(pers.name, TEST_DATA['name'])
         self.assert_equal(pers.surname, TEST_DATA['surname'])
