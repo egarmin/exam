@@ -193,7 +193,7 @@ class TestCountModel(TestCase):
             os.unlink(filename)
         except OSError:
             pass
-        subprocess.call('bashscript.sh', stdout=subprocess.PIPE)
+        subprocess.call(['sh', 'bashscript.sh'], stdout=subprocess.PIPE)
         out = open(filename).read()
         ct = ContentType.objects.all()
         for c in ct:

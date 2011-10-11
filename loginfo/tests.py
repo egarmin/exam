@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from tddspry.django import HttpTestCase, DatabaseTestCase
-from loginfo.models import LogRequest, LogModel
-from personal.models import Person
 from django.core.urlresolvers import reverse
+
+from tddspry.django import HttpTestCase, DatabaseTestCase
+
+from loginfo.models import LogRequest, LogModel
 from loginfo.views import display_requests
+from personal.models import Person
 
 
 class MiddlewareRequest(HttpTestCase):

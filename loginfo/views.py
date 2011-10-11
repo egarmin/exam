@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-from personal.decorators import render_to
 from loginfo.models import LogRequest
-
+from personal.decorators import render_to
 
 @render_to('display_req.html')
 def display_requests(request):
