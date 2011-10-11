@@ -188,15 +188,12 @@ class TestCountModel(TestCase):
         self.find_in('error:', out_err.getvalue().lower())
 
     def test_script_file(self):
-        filename = date.today().strftime('%Y-%m-%d') + '.dat'
+        prefix = date.today().strftime('%Y-%m-%d')
+        filename = prefix + '.dat'
         try:
             os.unlink(filename)
         except OSError:
             pass
         call(['sh', 'bashscript.sh'], stdout=PIPE)
         out = open(filename).read()
-        ct = ContentType.objects.all()
-        for c in ct:
-            self.find_in(c.model, out.lower())
-            self.find_in(c.app_label, out.lower())
-        self.find_in('error:', out)
+        self.find_in('ERROR:', out)
