@@ -8,6 +8,7 @@ from django.utils import simplejson as json
 import os
 import settings
 from StringIO import StringIO
+from subprocess import call, PIPE
 import sys
 
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
@@ -187,18 +188,12 @@ class TestCountModel(TestCase):
         self.find_in('error:', out_err.getvalue().lower())
 
     def test_script_file(self):
-        #filename = os.getcwd() +'/tmp/exam/'+ \
-         #          date.today().strftime('%Y-%m-%d') + '.dat'
         filename = date.today().strftime('%Y-%m-%d') + '.dat'
-        filename = '/var/tmp/' + filename
         try:
             os.unlink(filename)
         except OSError:
             pass
-        pr = commands.getoutput('chmod +rx bashscript.sh')
-        print pr
-        pr = commands.getoutput('bashscript.sh')
-        print pr
+        call(['sh', 'bashscript.sh'], stdout=PIPE)
         out = open(filename).read()
         ct = ContentType.objects.all()
         for c in ct:
