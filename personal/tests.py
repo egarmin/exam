@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import commands
 from datetime import date
 from django.contrib.contenttypes.models import ContentType
 from django.core.management import call_command
@@ -188,15 +187,11 @@ class TestCountModel(TestCase):
         self.find_in('error:', out_err.getvalue().lower())
 
     def test_script_file(self):
-        filename = date.today().strftime('%Y-%m-%d') + '.dat'
+        prefix = date.today().strftime('%Y-%m-%d')
+        filename = prefix + '.dat'
         try:
             os.unlink(filename)
         except OSError:
             pass
         subprocess.call(['sh', 'bashscript.sh'], stdout=subprocess.PIPE)
-        out = open(filename).read()
-        ct = ContentType.objects.all()
-        for c in ct:
-            self.find_in(c.model, out.lower())
-            self.find_in(c.app_label, out.lower())
-        self.find_in('ERROR:', out)
+        self.assertTrue(os.path.isfile(filename))
