@@ -14,8 +14,9 @@ class LogModelsAdmin(admin.ModelAdmin):
 
 
 class LogRequestAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'added', 'path']
+    list_display = ['priority', 'pk', 'added', 'path']
     list_display_links = ['pk']
+    list_editable = ['priority']
     list_per_page = 50
     search_fields = ['path']
     ordering = ['added']

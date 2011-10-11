@@ -51,7 +51,7 @@ h1 {
 /************* display requests ***************************/
 .middleware textarea{
     height: 10pc;
-    width: 400px;
+    width: 100%;
     vertical-align: top;
 }
 

@@ -1,10 +1,7 @@
 {% load i18n %}
+<div class="footer">
+<hr>
 <br>
-<p>*******************************</p>
-<br>
-<a href="{% url loginfo.views.display_requests %}">{% trans "10 requests" %}</a>&nbsp;|
-<a href="/edit/">{% trans "Edit" %}</a>&nbsp;
-{% if request.user.is_authenticated %}|
-<a href="{% url django.contrib.auth.views.logout %}">{% trans "Logout" %}</a>
-{% endif %}
 
+<a href="{% url loginfo.views.display_requests %}">{% trans "10 requests" %}</a>
+</div>

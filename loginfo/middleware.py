@@ -3,10 +3,10 @@ from loginfo.models import LogRequest
 
 
 def make_text(inp_dict):
-    if not inp_dict:
-        return '\nno data'
     values = inp_dict.items()
     values.sort()
+    if not values:
+        return '\nno data'
     out_text = []
     for k, v in values:
         out_text.append('\n%s = %s' % (k, v))
@@ -24,7 +24,6 @@ class MyMiddle:
         req_text += '\nsecure = \'%s\'' % str(request.is_secure())
         req_text += '\najax = \'%s\'' % str(request.is_ajax())
         req_text += '\npath_info = \'%s\'' % request.path_info
-        #req_text += '\nraw_post_data = \'%s\'' % request.raw_post_data
         req_text += '\nsession_key = %s' % request.session.session_key
         req_text += '\n******* META section *********'
         req_text += make_text(request.META)

@@ -28,7 +28,7 @@ class CalendarWidget(forms.DateInput):
 class PersonForm(forms.ModelForm):
 
     birthday = forms.DateField(input_formats=["%d.%m.%Y", "%Y-%m-%d"],
-                               label=_("Date of birth"), required=False,
+                               label=_("Date of birth:"), required=False,
                                widget=CalendarWidget)
     bio = forms.CharField(label=_('Biography:'), required=False,
                     widget=forms.Textarea(attrs={'cols': '35', 'rows': '6'}))
