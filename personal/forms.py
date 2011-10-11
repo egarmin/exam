@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.forms import DateInput, ModelForm, Textarea
+from django.utils.translation import ugettext_lazy as _
 import settings
 
 from personal.models import Person
@@ -24,16 +25,20 @@ class CalendarWidget(DateInput):
 
 
 class PersonForm(ModelForm):
+    
     class Meta:
         model = Person
         widgets = {
             'bio': Textarea(attrs={'cols': 35, 'rows': 6}),
             'appendix': Textarea(attrs={'cols': 35, 'rows': 6}),
-            'birthday': CalendarWidget(),
             }
-
+        
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
+        self.fields['birthday'].required = False
+        #self.fields['birthday'].widgets = CalendarWidget
+        self.fields['birthday'].label = _('Date of birth')
+        self.fields['birthday'].input_formats = ["%d.%m.%Y", "%Y-%m-%d"]
         index = len(self.fields.keyOrder) / 2
         order = self.fields.keyOrder
         rev = order[index:] + order[:index]
