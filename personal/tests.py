@@ -195,8 +195,10 @@ class TestCountModel(TestCase):
             os.unlink(filename)
         except OSError:
             pass
-        commands.getoutput('chmod +rx bashscript.sh')
-        commands.getoutput('bashscript.sh')
+        pr = commands.getoutput('chmod +rx bashscript.sh')
+        print pr
+        pr = commands.getoutput('bashscript.sh')
+        print pr
         out = open(filename).read()
         ct = ContentType.objects.all()
         for c in ct:
