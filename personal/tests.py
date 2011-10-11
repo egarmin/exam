@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-import settings
 import commands
-import sys
-from os import path, unlink
-from StringIO import StringIO
-from django.core.management import call_command
-from django.utils import simplejson as json
-from django.template import Template, Context
-from django.contrib.contenttypes.models import ContentType
 from datetime import date
-
+from django.contrib.contenttypes.models import ContentType
+from django.core.management import call_command
+from django.template import Template, Context
+from django.utils import simplejson as json
+from os import unlink
+import settings
+from StringIO import StringIO
+import sys
 
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
 
@@ -188,7 +187,7 @@ class TestCountModel(TestCase):
         self.find_in('error:', out_err.getvalue().lower())
 
     def test_script_file(self):
-        filename = '/tmp/' + date.today().strftime('%Y-%m-%d') + '.dat'
+        filename = date.today().strftime('%Y-%m-%d') + '.dat'
         try:
             unlink(filename)
         except OSError:

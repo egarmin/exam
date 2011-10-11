@@ -17,6 +17,7 @@ def display_person(request):
     return {'pers': pers}
 
 
+@render_to('edit_pers.html')
 @login_required
 @render_to('edit_pers.html')
 def edit_person(request):
@@ -27,7 +28,7 @@ def edit_person(request):
         return HttpResponseRedirect('/')
     if request.method == 'POST':
         p_form = PersonForm(instance=pers, data=request.POST)
-        if p_form.is_valid(): # forms are correct
+        if p_form.is_valid():  # forms are correct
             p_form.save()
             out = {'status': 'ok'}
         else:

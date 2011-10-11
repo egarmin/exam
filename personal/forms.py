@@ -25,7 +25,6 @@ class CalendarWidget(forms.DateInput):
                                                     'size': '12'})
 
 
-
 class PersonForm(forms.ModelForm):
 
     birthday = forms.DateField(input_formats=["%d.%m.%Y", "%Y-%m-%d"],
