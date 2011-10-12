@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.forms import DateInput, ModelForm, Textarea, DateField
-from django.utils.translation import ugettext_lazy as _
+from django.forms import DateInput, ModelForm, Textarea
 import settings
 
 from personal.models import Person
