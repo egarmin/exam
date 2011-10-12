@@ -25,10 +25,10 @@ class CalendarWidget(DateInput):
 
 
 class PersonForm(ModelForm):
-    birthday = DateField(widget=CalendarWidget)
-
+    
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
+        self.fields['birthday'].widget = CalendarWidget()
         self.fields['birthday'].required = False
         self.fields['birthday'].label = _('Date of birth')
         self.fields['birthday'].input_formats = ["%d.%m.%Y", "%Y-%m-%d"]
