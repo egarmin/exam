@@ -23,8 +23,8 @@
                 <td align="center">{{ req.priority }}</td>
                 <td align="center">pk = {{ req.pk }} </td>
                 <td>
-                    <p>{{ req.added|date:"d.m.Y" }}<br>
-                    {{ req.added|date:"H:i:s" }}</p>
+                    {{ req.added|date:"d.m.Y" }}<br>
+                    ({{ req.added|date:"H:i:s" }})
                 </td>
                 <td><textarea>{{ req.content }}</textarea></td>
                 <td><textarea>{{ req.user_info }}</textarea></td></tr>

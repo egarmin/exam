@@ -29,8 +29,6 @@ class PersonForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(PersonForm, self).__init__(*args, **kwargs)
         self.fields['birthday'].widget = CalendarWidget()
-        self.fields['birthday'].required = False
-        self.fields['birthday'].label = _('Date of birth')
         self.fields['birthday'].input_formats = ["%d.%m.%Y", "%Y-%m-%d"]
         index = len(self.fields.keyOrder) / 2
         order = self.fields.keyOrder
