@@ -81,7 +81,7 @@ class PriorityTest(HttpTestCase):
 
         for i in range(1, 11):
             log = LogRequest.objects.get(pk=i)
-            log.priority = 11-i
+            log.priority = 11 - i
             log.save()
         #order by priority field
         self.go('/middle/?field=priority')
@@ -122,7 +122,7 @@ class PriorityTest(HttpTestCase):
         s = self.show()
         for i in range(0, 9):
             t1 = log[i].added.strftime('%H:%M:%S')
-            t2 = log[i+1].added.strftime('%H:%M:%S')
+            t2 = log[i + 1].added.strftime('%H:%M:%S')
             self.assert_true(s.find('(%s)' % t1) <
                              s.find('(%s)' % t2))
         #reverse order by added field
@@ -131,7 +131,7 @@ class PriorityTest(HttpTestCase):
         s = self.show()
         for i in range(0, 9):
             t1 = log[i].added.strftime('%H:%M:%S')
-            t2 = log[i+1].added.strftime('%H:%M:%S')
+            t2 = log[i + 1].added.strftime('%H:%M:%S')
             self.assert_true(s.find('(%s)' % t1) >
                              s.find('(%s)' % t2))
 
@@ -141,4 +141,3 @@ class PriorityTest(HttpTestCase):
         for i in range(0, 9):
             self.assert_true(s.find('pk = %s' % (i + 1)) <
                              s.find('pk = %s' % (i + 2)))
-
