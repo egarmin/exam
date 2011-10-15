@@ -195,4 +195,3 @@ class TestCountModel(TestCase):
 
         subprocess.call(['sh', 'bashscript.sh'], stdout=subprocess.PIPE)
         self.assertTrue(os.path.isfile(filename))
-

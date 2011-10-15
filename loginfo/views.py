@@ -18,7 +18,7 @@ def display_requests(request):
 
     main_field = request.GET.get('field')
     if not main_field:
-        if arr['last'] !='':
+        if arr['last'] != '':
             arr[arr['last']] = '&nbsp;'
             arr['last'] = ''
         req_list = LogRequest.objects.all().order_by('added')[:10]
@@ -31,9 +31,10 @@ def display_requests(request):
         else:
             s = False
             arr['order'] = False
-            if arr['last'] !='':
+            if arr['last'] != '':
                 arr[arr['last']] = '&nbsp'
             arr[main_field] = '&darr;'
             arr['last'] = main_field
-        req_list = LogRequest.objects.all().order_by(sign[int(s)] + main_field)[:10]
+        req_list = LogRequest.objects.all().order_by(sign[int(s)] \
+                                                     + main_field)[:10]
     return {'req_list': req_list, 'arr': arr}
