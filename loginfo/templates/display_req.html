@@ -9,25 +9,31 @@
 
 <div class="middleware">
 <h1 align="center">{% trans "The first 10 HTTP requests that are stored by middlware" %}</h1>
-
+<h3 align="center">(ordered by the &quot;{{ arr.last }}&quot; field)</h3>
     <table>
         <tr>
-             <th>{% trans "Priority" %}</th>
-             <th>{% trans "Key" %}</th>
-             <th>{% trans "Time" %}<br> {% trans "of adding" %}</th>
+             <th><a href="?field=priority">{% trans "Priority" %}
+                 {% autoescape off %}{{arr.priority }}{% endautoescape %}</a></th>
+             <th><a href="?field=pk">{% trans "Key" %}
+                 {% autoescape off %}{{ arr.pk }}{% endautoescape %}</a></th>
+             <th><a href="?field=added">{% trans "Time" %}<br> {% trans "of adding" %}
+                 {% autoescape off %}{{ arr.added }}{% endautoescape %}</a></th>
+             <th><a href="?field=path">{% trans "Path" %}
+                 {% autoescape off %}{{ arr.path }}{% endautoescape %}</a></th>
              <th>{% trans "Common information" %}</th>
              <th>{% trans "Information" %} <br>{% trans "about user" %}</th>
          </tr>
         {% for req in req_list %}
             <tr>
-                <td align="center">{{ req.priority }}</td>
-                <td align="center">pk = {{ req.pk }} </td>
-                <td>
+                <td align="center" id="prior">{{ req.priority }}</td>
+                <td align="center">pk = {{ req.pk }}</td>
+                <td id="added">
                     {{ req.added|date:"d.m.Y" }}<br>
                     ({{ req.added|date:"H:i:s" }})
                 </td>
-                <td><textarea>{{ req.content }}</textarea></td>
-                <td><textarea>{{ req.user_info }}</textarea></td></tr>
+                <td id="path">{{ req.path }}</td>
+                <td><textarea>{{ req.content }}}</textarea></td>
+                <td><textarea>{{ req.user_info }}}</textarea></td></tr>
             {% empty %}
                 <h3>{% trans "No data to display" %}</h3>
             {% endfor %}
