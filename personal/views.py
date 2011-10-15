@@ -17,7 +17,6 @@ def display_person(request):
     return {'pers': pers}
 
 
-@render_to('edit_pers.html')
 @login_required
 @render_to('edit_pers.html')
 def edit_person(request):

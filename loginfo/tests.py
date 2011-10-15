@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-from tddspry.django import HttpTestCase, DatabaseTestCase
-from loginfo.models import LogRequest, LogModel
-from personal.models import Person
 from django.core.urlresolvers import reverse
+from time import sleep
+
+from tddspry.django import HttpTestCase, DatabaseTestCase
+
+from loginfo.models import LogRequest, LogModel
 from loginfo.views import display_requests
+from personal.models import Person
 
 
 class MiddlewareRequest(HttpTestCase):
-    '''  middleware ReqLog test '''
+    """  middleware ReqLog test """
 
     def request_log_test(self):
-        """ request record test   """
+        # request record test
 
         self.client.get('/someurl1/')
         self.client.get('/someurl2/?somevariable1=somevalue1& \
@@ -70,23 +73,72 @@ class TestLogModel(DatabaseTestCase):
 
 
 class PriorityTest(HttpTestCase):
-    """ Test ordering according priority property
-    """
+    """ Test ordering logRequest """
     def prior_test(self):
         for i in range(0, 10):
-            self.client.get('/someurl1/')
-        self.go('/middle/')
-        s = self.show()
-        for i in range(0, 9):
-            self.assert_true(s.find('pk = %s ' % (i + 1)) <
-                             s.find('pk = %s ' % (i + 2)))
-        # set priority field ==>> reverse display order
+            sleep(1.3)
+            self.client.get('/someurl_%s/' % i)
+
         for i in range(1, 11):
             log = LogRequest.objects.get(pk=i)
-            log.priority = i
+            log.priority = 11-i
             log.save()
-        self.go('/middle/')
+        #order by priority field
+        self.go('/middle/?field=priority')
         s = self.show()
         for i in range(0, 9):
-            self.assert_true(s.find('pk = %s ' % (i + 1)) >
-                             s.find('pk = %s ' % (i + 2)))
+            self.assert_true(s.find('id="prior">%s<' % (i + 1)) <
+                             s.find('id="prior">%s<' % (i + 2)))
+        #reverse order by priority field
+        self.go('/middle/?field=priority')
+        s = self.show()
+        for i in range(0, 9):
+            self.assert_true(s.find('id="prior">%s<' % (i + 1)) >
+                             s.find('id="prior">%s<' % (i + 2)))
+
+        #order by path field
+        self.go('/middle/?field=path')
+        s = self.show()
+        for i in range(0, 9):
+            self.assert_true(s.find('id="path">/someurl_%s/<' % i) <
+                             s.find('id="path">/someurl_%s/<' % (i + 1)))
+        #reverse order by path field
+        self.go('/middle/?field=path')
+        s = self.show()
+        for i in range(0, 9):
+            self.assert_true(s.find('id="path">/someurl_%s/<' % i) >
+                             s.find('id="path">/someurl_%s/<' % (i + 1)))
+
+        #order by pk field
+        self.go('/middle/?field=pk')
+        s = self.show()
+        for i in range(0, 9):
+            self.assert_true(s.find('pk = %s' % (i + 1)) <
+                             s.find('pk = %s' % (i + 2)))
+
+        #order by added field
+        log = LogRequest.objects.all().order_by('added')
+        self.go('/middle/?field=added')
+        s = self.show()
+        for i in range(0, 9):
+            t1 = log[i].added.strftime('%H:%M:%S')
+            t2 = log[i+1].added.strftime('%H:%M:%S')
+            self.assert_true(s.find('(%s)' % t1) <
+                             s.find('(%s)' % t2))
+        #reverse order by added field
+        #log = LogRequest.objects.all().order_by('-added')
+        self.go('/middle/?field=added')
+        s = self.show()
+        for i in range(0, 9):
+            t1 = log[i].added.strftime('%H:%M:%S')
+            t2 = log[i+1].added.strftime('%H:%M:%S')
+            self.assert_true(s.find('(%s)' % t1) >
+                             s.find('(%s)' % t2))
+
+        # order by pk field
+        self.go('/middle/?field=pk')
+        s = self.show()
+        for i in range(0, 9):
+            self.assert_true(s.find('pk = %s' % (i + 1)) <
+                             s.find('pk = %s' % (i + 2)))
+

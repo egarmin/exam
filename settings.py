@@ -109,7 +109,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'personal',
     'loginfo',
-    #'south',
+    'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -117,3 +117,8 @@ INSTALLED_APPS = (
 LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = '/'
+
+ # Exclude south on tests
+if 'NOSE_WITH_DJANGO' in os.environ:
+    INSTALLED_APPS = list(INSTALLED_APPS)
+    INSTALLED_APPS.remove('south')

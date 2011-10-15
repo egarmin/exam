@@ -16,7 +16,7 @@ def make_text(inp_dict):
 class MyMiddle:
 
     def process_request(self, request):
-        if 'admin' in request.path:
+        if 'middle' in request.path or 'admin' in request.path:
             return
         new_rec = LogRequest()
         req_text = '\n*******COMMON INFO*********'

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import commands
 from datetime import date
 from django.contrib.contenttypes.models import ContentType
 from django.core.management import call_command
@@ -8,7 +7,7 @@ from django.utils import simplejson as json
 import os
 import settings
 from StringIO import StringIO
-from subprocess import call, PIPE
+import subprocess
 import sys
 
 from tddspry.django import DatabaseTestCase, HttpTestCase, TestCase
@@ -83,7 +82,6 @@ class TestContactEdit(HttpTestCase):
                          HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         #Get edited pers
         pers = Person.objects.get(pk=1)
-
         #Compare pers members with test dict fields
         self.assert_equal(pers.name, TEST_DATA['name'])
         self.assert_equal(pers.surname, TEST_DATA['surname'])
@@ -194,6 +192,7 @@ class TestCountModel(TestCase):
             os.unlink(filename)
         except OSError:
             pass
-        call(['sh', 'bashscript.sh'], stdout=PIPE)
-        out = open(filename).read()
-        self.find_in('ERROR:', out)
+
+        subprocess.call(['sh', 'bashscript.sh'], stdout=subprocess.PIPE)
+        self.assertTrue(os.path.isfile(filename))
+
