@@ -9,8 +9,7 @@
 
 <div class="middleware">
 <h1 align="center">{% trans "10 HTTP requests that are stored by middlware" %}</h1>
-<h3 align="center">(ordered by the &quot;
-    {% if arr.last %}{{ arr.last }}{% else %}added{% endif %}&quot; field)</h3>
+<h3 align="center">(ordered by the {{ arr.last }} field)</h3>
     <table>
         <tr>
              <th><a href="?field=priority">{% trans "Priority" %}
@@ -39,10 +38,7 @@
                 <h3>{% trans "No data to display" %}</h3>
             {% endfor %}
     </table>
-
 </div>
-
-
 {% endblock %}
 
 {% block footer %}
