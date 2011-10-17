@@ -62,7 +62,6 @@ class TestLogModel(DatabaseTestCase):
         self.assert_equal(name, 'new_user_name')
         # delete
         pers = Person.objects.get(name='new_user_name')
-        pers.name = 'new_user_name'
         pers.delete()
         last = LogModel.objects.order_by('-added')[0]
         self.assert_equal(last.app_name, 'personal')
