@@ -36,4 +36,3 @@ function showResponse(data, statusText, xhr, $form)  {
         }
     }
  }
-//});
