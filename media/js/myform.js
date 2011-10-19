@@ -10,6 +10,7 @@ $(document).ready(function() {
     };
 
     $('#persform').ajaxForm(options);
+});
 
 function showRequest(formData, jqForm, options) {
     $('input, button, textarea').attr('disabled', 'disabled');
@@ -35,4 +36,4 @@ function showResponse(data, statusText, xhr, $form)  {
         }
     }
  }
-});
+//});
